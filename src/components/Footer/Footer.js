@@ -13,11 +13,11 @@ const Footer = () => {
             </p>
             <div className="input-box">
               <input type="checkbox" name="check1" />
-              <label for="check1">본인은 14세 이상입니다.(필수)</label>
+              <label for="check-text">본인은 14세 이상입니다.(필수)</label>
             </div>
             <div className="input-box">
               <input type="checkbox" name="check2" />
-              <label for="check2">
+              <label for="check-text">
                 개인정보수집 및 이용에 동의합니다(필수)
               </label>
             </div>
@@ -29,7 +29,9 @@ const Footer = () => {
             </p>
             <div className="input-box">
               <input type="checkbox" name="check3" />
-              <label for="check3">마케팅 정보 수신에 동의합니다(필수)</label>
+              <label for="check-text">
+                마케팅 정보 수신에 동의합니다(필수)
+              </label>
             </div>
             <div className="description">
               뉴스레터 이메일을 통한 광고성 정보 수신에 동의합니다.
@@ -48,27 +50,27 @@ const Footer = () => {
         </div>
         <div className="item">
           <p className="bottom-border-box">주문 및 지원</p>
-          <p className="guide-text">문의하기</p>
-          <p className="guide-text">자주 묻는 질문</p>
-          <p className="guide-text">배송</p>
-          <p className="guide-text">반품</p>
-          <p className="guide-text">배송 조회하기</p>
-          <p className="guide-text">주문내역</p>
-          <p className="guide-text">이용 약관</p>
+          {ORDER_SUPPORT.map(el => (
+            <p className="guide-text" key={el.id}>
+              {el.name}
+            </p>
+          ))}
         </div>
         <div className="item">
           <p className="bottom-border-box">서비스</p>
-          <p className="guide-text">기업체 구매</p>
-          <p className="guide-text">페이셜 이포인트먼트</p>
-          <p className="guide-text">1:1 채팅 상담</p>
-          <p className="guide-text">타일 체험 캠페인</p>
+          {SERVICE.map(el => (
+            <p className="guide-text" key={el.id}>
+              {el.name}
+            </p>
+          ))}
         </div>
         <div className="item">
           <p className="bottom-border-box">위치 기본 설정</p>
-          <p className="guide-text">배송:</p>
-          <p className="guide-text">대한민국</p>
-          <p className="guide-text">언어:</p>
-          <p className="guide-text">한국어</p>
+          {LOCATION.map(el => (
+            <p className="guide-text" key={el.id}>
+              {el.name}
+            </p>
+          ))}
         </div>
       </div>
     </div>
@@ -76,3 +78,25 @@ const Footer = () => {
 };
 
 export default Footer;
+
+const ORDER_SUPPORT = [
+  { id: 1, name: '문의하기' },
+  { id: 2, name: '자주 묻는 질문' },
+  { id: 3, name: '배송' },
+  { id: 4, name: '반품' },
+  { id: 5, name: '배송 조회하기' },
+  { id: 6, name: '주문내역' },
+  { id: 7, name: '이용 약관' },
+];
+const SERVICE = [
+  { id: 1, name: '기업체 구매' },
+  { id: 2, name: '페이셜 이포인트먼트' },
+  { id: 3, name: '1:1 채팅 상담' },
+  { id: 4, name: '타일 체험 캠페인' },
+];
+const LOCATION = [
+  { id: 1, name: '배송:' },
+  { id: 2, name: '대한민국' },
+  { id: 3, name: '언어:' },
+  { id: 4, name: '한국어' },
+];
