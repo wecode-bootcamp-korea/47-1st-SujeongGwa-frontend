@@ -19,9 +19,13 @@
       li.logo {
         margin-right: 1em;
         a {
-          img {
+          span {
             display: block;
             width: 4em;
+            height: 4em;
+            background: url(../../assets/images/logo_fffef2.png) no-repeat
+              center center / contain;
+            text-indent: -9999px;
           }
         }
       }

@@ -9,7 +9,9 @@ const Nav = () => {
         <ul className="mainMenu">
           <li className="logo">
             <Link to="/">
-              <img src="./images/logo_fffef2.png" alt="logo" />
+              {/* <img src="./images/logo_fffef2.png" alt="logo" />
+               */}
+              <span>SJG</span>
             </Link>
           </li>
           <li className="menulist">
