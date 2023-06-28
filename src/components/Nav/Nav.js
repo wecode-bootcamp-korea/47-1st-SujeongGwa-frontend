@@ -5,7 +5,7 @@ import './Nav.scss';
 const Nav = () => {
   return (
     <div className="nav scroll">
-      <div class=" depth01">
+      <div className="cateroryName">
         <ul className="mainMenu">
           <li className="logo">
             <Link to="/">
@@ -26,7 +26,7 @@ const Nav = () => {
           ))}
         </ul>
       </div>
-      <div className="depth02">
+      <div className="subCateroryName">
         <ul className="porcelainTile on">
           {PORCELAIN_TILE_LIST.map(info => (
             <li className="menulist" key={info.key}>

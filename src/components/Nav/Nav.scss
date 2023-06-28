@@ -7,7 +7,7 @@
   background-color: #333;
   border-bottom: 1px solid #666;
 
-  .depth01 {
+  .cateroryName {
     display: flex;
     justify-content: space-between;
     width: 90%;
@@ -72,8 +72,7 @@
     }
   }
 
-  .depth02 {
-    // display: none;
+  .subCateroryName {
     position: absolute;
     top: 5em;
     width: 100%;
