@@ -1,0 +1,60 @@
+.productDetail {
+  padding: 3em 0;
+
+  .productBox {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+
+    .itemImageBox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .productImage {
+        padding: 2em;
+        width: 35em;
+        height: 35em;
+        margin-right: 3em;
+      }
+    }
+
+    .productDescription {
+      display: flex;
+      flex-direction: column;
+      width: 28em;
+      padding: 2.2em;
+      margin-left: 3em;
+
+      .mainDescription {
+        border-bottom: 2px solid #333;
+        padding: 1em 0;
+      }
+      .productName {
+        font-size: 1.6em;
+        font-weight: 400;
+      }
+
+      .descriptionBox {
+        .usingType {
+          font-weight: 700;
+          padding-top: 1em;
+        }
+        .itemUsingType {
+          padding-top: 0.7em;
+        }
+      }
+    }
+
+    .productCountBox {
+      .count {
+        padding: 2em 0 1em 0;
+      }
+      .saveCart {
+        padding: 1em;
+        color: #d6d5cb;
+        background-color: #333;
+      }
+    }
+  }
+}
