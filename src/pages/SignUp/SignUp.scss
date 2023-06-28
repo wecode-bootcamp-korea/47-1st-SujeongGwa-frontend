@@ -1,0 +1,122 @@
+.signUp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .accountSelect {
+    .accountSelectContainer {
+      display: flex;
+      // display: none;
+
+      button {
+        cursor: pointer;
+        width: 11em;
+        height: 3em;
+        border: 0;
+        background-color: #333;
+        color: #fffef2;
+        font-size: 24px;
+        font-weight: 100;
+      }
+
+      span {
+        display: block;
+        width: 1px;
+        height: 72px;
+        margin: 0 30px;
+        background-color: #333;
+        text-indent: -9999px;
+      }
+    }
+  }
+
+  .container {
+    display: none;
+    border: 1px solid #999;
+    padding: 2em 1.2em;
+
+    h1 {
+      font-size: 1.5em;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+
+      .userInfo {
+        display: flex;
+        flex-direction: column;
+
+        input {
+          height: 1.5em;
+          margin-top: 2em;
+          background: none;
+          border: none;
+          border-bottom: 1px solid #ccc;
+          font-size: 20px;
+          caret-color: #333;
+          color: #333;
+
+          &::placeholder {
+            font-size: 20px;
+            color: #666;
+            font-weight: 100;
+          }
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+
+      .inputBox {
+        margin-top: 1.5em;
+
+        input {
+          accent-color: #fffef2;
+          cursor: pointer;
+        }
+
+        label {
+          padding-top: 0.8em;
+          font-size: 14px;
+        }
+
+        textarea {
+          display: block;
+          width: 40em;
+          height: 6.5em;
+          padding: 10px 20px 10px 10px;
+          background: none;
+          font-weight: 300;
+          line-height: 1.4em;
+          resize: none;
+        }
+      }
+
+      button {
+        cursor: pointer;
+        margin-top: 3em;
+        padding: 19px 23px;
+        border: 0;
+        background-color: #333;
+        color: #fffef2;
+        font-weight: 100;
+      }
+
+      span {
+        cursor: pointer;
+        margin-top: 1.5em;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 400;
+
+        a {
+          color: #666;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
