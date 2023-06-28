@@ -13,11 +13,14 @@
     width: 90%;
     height: 100%;
     margin: 0 auto;
+
     .mainMenu {
       display: flex;
       align-items: center;
+
       li.logo {
         margin-right: 1em;
+
         a {
           span {
             display: block;
@@ -29,64 +32,80 @@
           }
         }
       }
+
       li.menulist {
         margin-right: 1em;
+
         a {
           @include NavTopTextStyle;
+
           &::after {
             @include NavTopTextUnder;
           }
         }
+
         &:hover a::after {
           @include NavTopTexthover;
         }
       }
     }
+
     .utilMenu {
       display: flex;
       align-items: center;
+
       li {
         margin-left: 1em;
+
         a {
           @include NavTopTextStyle;
+
           &::after {
             @include NavTopTextUnder;
           }
         }
+
         &:hover a::after {
           @include NavTopTexthover;
         }
       }
     }
   }
+
   .depth02 {
-    display: none;
+    // display: none;
     position: absolute;
     top: 5em;
     width: 100%;
     height: 30em;
     background: #fffef2;
     border-bottom: 1px solid #666;
+
     ul {
       display: none;
       height: 100%;
       padding: 5.5em 0 0 5.5em;
+
       li {
         font-size: 1.2em;
         margin-bottom: 2em;
         width: 17%;
+
         a {
           @include NavScrollTextStyle;
           display: inline-block;
+
           &::after {
             @include NavScrollTextUnder;
           }
         }
+
         &:hover a::after {
           @include NavScrollTexthover;
         }
       }
     }
+
     ul.on {
       display: block;
     }
@@ -107,24 +126,32 @@
 //     width: 90%;
 //     height: 100%;
 //     margin: 0 auto;
+
 //     .mainMenu {
 //       display: flex;
 //       align-items: center;
+
 //       li.menulist {
 //         margin-right: 1em;
+
 //         a {
 //           @include NavScrollTextStyle;
+
 //           &::after {
 //             @include NavScrollTextUnder;
 //           }
 //         }
+
 //         &:hover a::after {
 //           @include NavScrollTexthover;
 //         }
 //       }
+
 //       li.logo {
 //         margin-right: 1em;
+
 //         a {
+
 //           img {
 //             display: block;
 //             width: 4em;
@@ -132,17 +159,22 @@
 //         }
 //       }
 //     }
+
 //     .utilMenu {
 //       display: flex;
 //       align-items: center;
+
 //       li {
 //         margin-left: 1em;
+
 //         a {
 //           @include NavScrollTextStyle;
+
 //           &::after {
 //             @include NavScrollTextUnder;
 //           }
 //         }
+
 //         &:hover a::after {
 //           @include NavScrollTexthover;
 //         }
@@ -150,6 +182,7 @@
 //     }
 //   }
 // }
+
 // .main {
 //   height: 2000px;
 // }
