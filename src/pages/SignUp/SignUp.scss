@@ -3,7 +3,31 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  .accountSelect {
+    .accountSelectContainer {
+      display: flex;
+      button {
+        cursor: pointer;
+        width: 11em;
+        height: 3em;
+        border: 0;
+        background-color: #333;
+        color: #fffef2;
+        font-size: 24px;
+        font-weight: 100;
+      }
+      span {
+        display: block;
+        width: 1px;
+        height: 72px;
+        margin: 0 30px;
+        background-color: #333;
+        text-indent: -9999px;
+      }
+    }
+  }
   .container {
+    display: none;
     border: 1px solid #999;
     padding: 2em 1.2em;
     h1 {
@@ -52,6 +76,7 @@
           background: none;
           font-weight: 300;
           line-height: 1.4em;
+          resize: none;
         }
       }
       button {
