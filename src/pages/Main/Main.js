@@ -51,6 +51,7 @@ const PRODUCT_LIST_01 = [
   { id: 1, img: './images/p_1_1.jpeg', name: 'SPM 1103', type: 'MATT' },
   { id: 2, img: './images/p_1_2.jpeg', name: 'SPM 3055', type: 'MATT' },
   { id: 3, img: './images/p_1_3.jpeg', name: 'SPM 3056', type: 'MATT' },
+  { id: 4, img: './images/p_1_1.jpeg', name: 'SPM 1103', type: 'MATT' },
 ];
 
 const MAIN_CONTENTS_LIST = [
