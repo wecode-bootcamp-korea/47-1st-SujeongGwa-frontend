@@ -5,19 +5,19 @@ const Footer = () => {
     <div className="footer">
       <div className="container">
         <div className="item">
-          <p className="bottom-border-box">SJG 커뮤니케이션</p>
+          <p className="bottomBorderBox">SJG 커뮤니케이션</p>
           <div>
-            <p className="guide-text">
+            <p className="guideText">
               제품, 서비스, 이벤트 등 다양한 소식을 받아 볼 수 있도록 이메일을
               구독해주세요.
             </p>
-            <div className="input-box">
+            <div className="inputBox">
               <input type="checkbox" name="check1" />
-              <label for="check-text">본인은 14세 이상입니다.(필수)</label>
+              <label for="checkText">본인은 14세 이상입니다.(필수)</label>
             </div>
-            <div className="input-box">
+            <div className="inputBox">
               <input type="checkbox" name="check2" />
-              <label for="check-text">
+              <label for="checkText">
                 개인정보수집 및 이용에 동의합니다(필수)
               </label>
             </div>
@@ -27,20 +27,18 @@ const Footer = () => {
               보내드립니다. 마케팅 목적의 개인정보 수집 및 이용에 동의하지
               않으셔도 되고, 그러한 경우, 마케팅 정보를 수령하실 수 없습니다.
             </p>
-            <div className="input-box">
+            <div className="inputBox">
               <input type="checkbox" name="check3" />
-              <label for="check-text">
-                마케팅 정보 수신에 동의합니다(필수)
-              </label>
+              <label for="checkText">마케팅 정보 수신에 동의합니다(필수)</label>
             </div>
             <div className="description">
               뉴스레터 이메일을 통한 광고성 정보 수신에 동의합니다.
             </div>
-            <div className="email-input">
+            <div className="emailInput">
               <input
                 type="text"
                 placeholder="이메일주소"
-                className="footer-input"
+                className="footerInput"
               />
               <button type="button" className="footer-Btn">
                 ⇨
@@ -49,25 +47,25 @@ const Footer = () => {
           </div>
         </div>
         <div className="item">
-          <p className="bottom-border-box">주문 및 지원</p>
+          <p className="bottomBorderBox">주문 및 지원</p>
           {ORDER_SUPPORT.map(el => (
-            <p className="guide-text" key={el.id}>
+            <p className="guideText" key={el.id}>
               {el.name}
             </p>
           ))}
         </div>
         <div className="item">
-          <p className="bottom-border-box">서비스</p>
+          <p className="bottomBorderBox">서비스</p>
           {SERVICE.map(el => (
-            <p className="guide-text" key={el.id}>
+            <p className="guideText" key={el.id}>
               {el.name}
             </p>
           ))}
         </div>
         <div className="item">
-          <p className="bottom-border-box">위치 기본 설정</p>
+          <p className="bottomBorderBox">위치 기본 설정</p>
           {LOCATION.map(el => (
-            <p className="guide-text" key={el.id}>
+            <p className="guideText" key={el.id}>
               {el.name}
             </p>
           ))}
