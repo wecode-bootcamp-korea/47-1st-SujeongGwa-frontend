@@ -26,7 +26,7 @@ const Nav = () => {
           ))}
         </ul>
       </div>
-      <div className="subCateroryName">
+      {/* <div className="subCateroryName">
         <ul className="porcelainTile on">
           {PORCELAIN_TILE_LIST.map(info => (
             <li className="menulist" key={info.key}>
@@ -48,7 +48,7 @@ const Nav = () => {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };
@@ -66,20 +66,20 @@ const UTIL_MENU_LIST = [
   { id: 2, link: '/', text: 'CART' },
 ];
 
-const PORCELAIN_TILE_LIST = [
-  { id: 1, link: '/', text: '600X600X10MM' },
-  { id: 2, link: '/', text: '600X1200X20MM' },
-  { id: 3, link: '/', text: '600X1200X11MM' },
-  { id: 4, link: '/', text: '600X600X20MM' },
-  { id: 5, link: '/', text: '400X800X11MM' },
-];
+// const PORCELAIN_TILE_LIST = [
+//   { id: 1, link: '/', text: '600X600X10MM' },
+//   { id: 2, link: '/', text: '600X1200X20MM' },
+//   { id: 3, link: '/', text: '600X1200X11MM' },
+//   { id: 4, link: '/', text: '600X600X20MM' },
+//   { id: 5, link: '/', text: '400X800X11MM' },
+// ];
 
-const WALL_TILE_LIST = [
-  { id: 1, link: '/', text: '300X600MM' },
-  { id: 2, link: '/', text: '200X600MM' },
-];
+// const WALL_TILE_LIST = [
+//   { id: 1, link: '/', text: '300X600MM' },
+//   { id: 2, link: '/', text: '200X600MM' },
+// ];
 
-const FLOOR_TILE_LIST = [
-  { id: 1, link: '/', text: '300X300MM' },
-  { id: 2, link: '/', text: '200X400MM' },
-];
+// const FLOOR_TILE_LIST = [
+//   { id: 1, link: '/', text: '300X300MM' },
+//   { id: 2, link: '/', text: '200X400MM' },
+// ];
