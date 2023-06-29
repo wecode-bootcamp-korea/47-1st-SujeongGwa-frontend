@@ -1,4 +1,5 @@
 @import '../../components/Component/Input/Input.scss';
+@import '../../components/Component/CheckTextarea/CheckTextarea.scss';
 
 .signUp {
   display: flex;
@@ -49,52 +50,6 @@
       .userInfo {
         display: flex;
         flex-direction: column;
-
-        // .individualInput {
-        //   height: 1.5em;
-        //   margin-top: 2em;
-        //   background: none;
-        //   border: none;
-        //   border-bottom: 1px solid #ccc;
-        //   font-size: 20px;
-        //   caret-color: #333;
-        //   color: #333;
-
-        //   &::placeholder {
-        //     font-size: 20px;
-        //     color: #666;
-        //     font-weight: 100;
-        //   }
-
-        //   &:focus {
-        //     outline: none;
-        //   }
-        // }
-      }
-
-      .inputBox {
-        margin-top: 1.5em;
-
-        input {
-          accent-color: #fffef2;
-          cursor: pointer;
-        }
-
-        label {
-          padding-top: 0.8em;
-          font-size: 14px;
-        }
-
-        textarea {
-          display: block;
-          width: 40em;
-          height: 6.5em;
-          padding: 10px 20px 10px 10px;
-          background: none;
-          font-weight: 300;
-          line-height: 1.4em;
-          resize: none;
-        }
       }
 
       button {
