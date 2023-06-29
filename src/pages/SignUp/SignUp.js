@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Input from '../../components/Component/Input/Input';
 import CheckTextarea from '../../components/Component/CheckTextarea/CheckTextarea';
+import Button from '../../components/Component/Button/Button';
 import './SignUp.scss';
 
 const INPUT_DATA_INDIVIDUAL = [
@@ -59,6 +60,11 @@ const INPUT_DATA_BUSINESS = [
   },
 ];
 
+const BLACK_BTN = {
+  className: 'blackBtn',
+  btnText: '회원가입',
+};
+
 const SignUp = () => {
   return (
     <div className="signUp">
@@ -99,7 +105,7 @@ const SignUp = () => {
               defaultValue={info.defaultValue}
             />
           ))}
-          <button>회원가입</button>
+          <Button className={BLACK_BTN.className} btnText={BLACK_BTN.btnText} />
           <span>
             <Link to="/">이미 SJG 계정을 가지고 계십니까?</Link>
           </span>
@@ -131,7 +137,7 @@ const SignUp = () => {
               defaultValue={info.defaultValue}
             />
           ))}
-          <button>회원가입</button>
+          <Button className={BLACK_BTN.className} btnText={BLACK_BTN.btnText} />
           <span>
             <Link to="/">이미 SJG 계정을 가지고 계십니까?</Link>
           </span>
