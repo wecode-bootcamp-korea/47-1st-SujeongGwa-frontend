@@ -1,10 +1,13 @@
 .productDetail {
-  padding: 3em 0;
+  padding-top: 78px;
 
   .productBox {
-    width: 100vw;
+    padding: 5em 0;
     display: flex;
     justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+    border-bottom: 1px solid #666;
 
     .itemImageBox {
       display: flex;
@@ -43,20 +46,97 @@
         }
 
         .itemUsingType {
-          padding-top: 0.7em;
+          padding: 0.7em 00;
+          border-bottom: 1px solid #cbcbcb;
         }
       }
     }
 
     .productCountBox {
+      display: flex;
+      justify-content: center;
       .count {
-        padding: 2em 0 1em 0;
+        display: flex;
+        justify-content: center;
+        padding: 1em;
+        margin: 2em 0;
+        width: 50%;
+        border: 1px solid #333;
+        border-radius: 0.5em;
+      }
+    }
+
+    .saveCart {
+      padding: 1em;
+      color: #d6d5cb;
+      background-color: #333;
+    }
+  }
+
+  .productExample {
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    padding: 4em 0;
+    margin: 0 auto;
+    border-bottom: 1px solid #cacaca;
+    align-items: center;
+
+    .constructionWay {
+      .testCase {
+        width: 30em;
+        border-radius: 0.5em;
+      }
+    }
+
+    .constructionText {
+      display: flex;
+      flex-direction: column;
+
+      h3 {
+        padding-top: 0.6em;
+        font-size: 1.3em;
       }
 
-      .saveCart {
-        padding: 1em;
-        color: #d6d5cb;
-        background-color: #333;
+      .exampleText {
+        padding-top: 2em;
+      }
+    }
+
+    .constructionTitle {
+      font-size: 2em;
+    }
+  }
+
+  .productTableBox {
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    padding-top: 3em;
+    padding-bottom: 6em;
+    margin: 0 auto;
+    border-top: 1px solid #333;
+
+    .productInformation {
+      .column-left {
+        display: flex;
+        padding: 0.7em 0;
+        justify-content: space-between;
+        font-size: 1.3em;
+        font-weight: 600;
+      }
+
+      .column-right {
+        display: flex;
+        padding: 0.7em 0;
+        justify-content: space-between;
+        font-size: 1.3em;
+      }
+
+      .robbery {
+        display: flex;
+        padding: 0.5em 0;
+        font-size: 1.2em;
       }
     }
   }
