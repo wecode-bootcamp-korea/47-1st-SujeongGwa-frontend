@@ -9,7 +9,8 @@
       "using": "내장재",
       "size": "600 X 600",
       "thickness": "10MM",
-      "weight": "10kg"
+      "weight": "10kg",
+      "price": "1000"
     }
   ]
 }

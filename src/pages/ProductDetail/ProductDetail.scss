@@ -54,15 +54,13 @@
 
     .productCountBox {
       display: flex;
-      justify-content: center;
-      .count {
+      justify-content: space-between;
+
+      .totalPrice {
         display: flex;
-        justify-content: center;
-        padding: 1em;
-        margin: 2em 0;
-        width: 50%;
-        border: 1px solid #333;
-        border-radius: 0.5em;
+        align-items: center;
+        font-size: 1.3em;
+        font-weight: 600;
       }
     }
 

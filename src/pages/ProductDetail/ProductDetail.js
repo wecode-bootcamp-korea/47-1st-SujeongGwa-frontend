@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import './ProductDetail.scss';
+import Count from '../../components/Count/Count';
 
 const ProductDetail = () => {
   const navigate = useNavigate();
-
+  const [countNumber, setCount] = useState(1);
   const [product, setProduct] = useState([]);
+
   useEffect(() => {
     fetch('./data/product.json')
       .then(res => res.json())
@@ -38,7 +40,8 @@ const ProductDetail = () => {
               <p className="itemUsingType">{product.weight}</p>
             </ul>
             <div className="productCountBox">
-              <div className="count">여기는 카운트 컴포넌트</div>
+              <Count countNumber={countNumber} setCount={setCount} />
+              <div className="totalPrice">{product.price * countNumber}원</div>
             </div>
             <button
               type="submit"
