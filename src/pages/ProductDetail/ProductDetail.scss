@@ -83,6 +83,7 @@
     align-items: center;
 
     .constructionWay {
+      display: flex;
       .testCase {
         width: 30em;
         border-radius: 0.5em;
@@ -92,7 +93,9 @@
     .constructionText {
       display: flex;
       flex-direction: column;
-
+      h1 {
+        margin-bottom: 1em;
+      }
       h3 {
         padding-top: 0.6em;
         font-size: 1.3em;
