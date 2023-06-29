@@ -10,7 +10,7 @@
   .cateroryName {
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    width: 95%;
     height: 100%;
     margin: 0 auto;
 
@@ -73,6 +73,7 @@
   }
 
   .subCateroryName {
+    display: none;
     position: absolute;
     top: 5em;
     width: 100%;
