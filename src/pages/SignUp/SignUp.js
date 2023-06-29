@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Input from '../../components/Component/Input/Input';
 import CheckTextarea from '../../components/Component/CheckTextarea/CheckTextarea';
@@ -66,83 +66,120 @@ const BLACK_BTN = {
 };
 
 const SignUp = () => {
+  const [signUp, setSignUp] = useState(null);
+  const [signUpBtn, setSignUpBtn] = useState(false);
+
+  const handleButtonClick = buttonName => {
+    setSignUp(buttonName);
+    setSignUpBtn(true);
+  };
+
+  const renderLayout = () => {
+    if (signUp === '개인 회원가입') {
+      return (
+        <div className="container individual">
+          <h1>개인 회원가입</h1>
+          <div className="form">
+            <div className="userInfo">
+              {INPUT_DATA_INDIVIDUAL.map(info => (
+                <Input
+                  key={info.id}
+                  className={info.className}
+                  name={info.name}
+                  type={info.type}
+                  placeholder={info.placeholder}
+                />
+              ))}
+            </div>
+            <div className="inputBox">
+              <input type="checkbox" name="check1" />
+              <label htmlFor="check1">본인은 14세 이상입니다.(필수)</label>
+            </div>
+            {TERMS.map(info => (
+              <CheckTextarea
+                key={info.id}
+                inputBoxClassName={info.inputBoxClassName}
+                inputType={info.inputType}
+                inputName={info.inputName}
+                labelText={info.labelText}
+                textareaClassName={info.textareaClassName}
+                textareaName={info.textareaName}
+                defaultValue={info.defaultValue}
+              />
+            ))}
+            <Button
+              className={BLACK_BTN.className}
+              btnText={BLACK_BTN.btnText}
+            />
+            <span>
+              <Link to="/">이미 SJG 계정을 가지고 계십니까?</Link>
+            </span>
+          </div>
+        </div>
+      );
+    } else if (signUp === '사업자 회원가입') {
+      return (
+        <div className="container business">
+          <h1>사업자 회원가입</h1>
+          <div className="form">
+            <div className="userInfo">
+              {INPUT_DATA_BUSINESS.map(info => (
+                <Input
+                  className={info.className}
+                  key={info.id}
+                  name={info.name}
+                  type={info.type}
+                  placeholder={info.placeholder}
+                />
+              ))}
+            </div>
+            {TERMS.map(info => (
+              <CheckTextarea
+                key={info.id}
+                inputBoxClassName={info.inputBoxClassName}
+                inputType={info.inputType}
+                inputName={info.inputName}
+                labelText={info.labelText}
+                textareaClassName={info.textareaClassName}
+                textareaName={info.textareaName}
+                defaultValue={info.defaultValue}
+              />
+            ))}
+            <Button
+              className={BLACK_BTN.className}
+              btnText={BLACK_BTN.btnText}
+            />
+            <span>
+              <Link to="/">이미 SJG 계정을 가지고 계십니까?</Link>
+            </span>
+          </div>
+        </div>
+      );
+    }
+  };
   return (
     <div className="signUp">
-      <div className="accountSelect">
+      <div
+        className="accountSelect"
+        style={{ display: signUpBtn ? 'none' : 'block' }}
+      >
         <div className="accountSelectContainer">
-          <button>개인회원 회원가입</button>
+          <button
+            className="blackBtn"
+            onClick={() => handleButtonClick('개인 회원가입')}
+          >
+            개인 회원가입
+          </button>
           <span>|</span>
-          <button>사업자 회원가입</button>
+          <button
+            className="blackBtn"
+            onClick={() => handleButtonClick('사업자 회원가입')}
+          >
+            사업자 회원가입
+          </button>
         </div>
       </div>
-      <div className="container individual">
-        <h1>회원가입 (개인회원)</h1>
-        <div className="form">
-          <div className="userInfo">
-            {INPUT_DATA_INDIVIDUAL.map(info => (
-              <Input
-                key={info.id}
-                className={info.className}
-                name={info.name}
-                type={info.type}
-                placeholder={info.placeholder}
-              />
-            ))}
-          </div>
-          <div className="inputBox">
-            <input type="checkbox" name="check1" />
-            <label htmlFor="check1">본인은 14세 이상입니다.(필수)</label>
-          </div>
-          {TERMS.map(info => (
-            <CheckTextarea
-              key={info.id}
-              inputBoxClassName={info.inputBoxClassName}
-              inputType={info.inputType}
-              inputName={info.inputName}
-              labelText={info.labelText}
-              textareaClassName={info.textareaClassName}
-              textareaName={info.textareaName}
-              defaultValue={info.defaultValue}
-            />
-          ))}
-          <Button className={BLACK_BTN.className} btnText={BLACK_BTN.btnText} />
-          <span>
-            <Link to="/">이미 SJG 계정을 가지고 계십니까?</Link>
-          </span>
-        </div>
-      </div>
-      <div className="container business">
-        <h1>회원가입 (사업자)</h1>
-        <div className="form">
-          <div className="userInfo">
-            {INPUT_DATA_BUSINESS.map(info => (
-              <Input
-                className={info.className}
-                key={info.id}
-                name={info.name}
-                type={info.type}
-                placeholder={info.placeholder}
-              />
-            ))}
-          </div>
-          {TERMS.map(info => (
-            <CheckTextarea
-              key={info.id}
-              inputBoxClassName={info.inputBoxClassName}
-              inputType={info.inputType}
-              inputName={info.inputName}
-              labelText={info.labelText}
-              textareaClassName={info.textareaClassName}
-              textareaName={info.textareaName}
-              defaultValue={info.defaultValue}
-            />
-          ))}
-          <Button className={BLACK_BTN.className} btnText={BLACK_BTN.btnText} />
-          <span>
-            <Link to="/">이미 SJG 계정을 가지고 계십니까?</Link>
-          </span>
-        </div>
-      </div>
+      {renderLayout()}
     </div>
   );
 };
