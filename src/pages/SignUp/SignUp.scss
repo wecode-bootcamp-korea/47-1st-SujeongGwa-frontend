@@ -6,8 +6,8 @@
 
   .accountSelect {
     .accountSelectContainer {
-      display: flex;
-      // display: none;
+      // display: flex;
+      display: none;
 
       button {
         cursor: pointer;
@@ -32,7 +32,7 @@
   }
 
   .container {
-    display: none;
+    // display: none;
     border: 1px solid #999;
     padding: 2em 1.2em;
 

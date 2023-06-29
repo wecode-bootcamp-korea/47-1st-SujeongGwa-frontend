@@ -1,6 +1,20 @@
 import React from 'react';
-import './SignUp.scss';
 import { Link } from 'react-router-dom';
+import Input from '../../components/Component/Input/Input';
+import './SignUp.scss';
+
+const INPUT_DATA_INDIVIDUAL = [
+  { id: 1, name: 'name', type: 'text', placeholder: '이름' },
+  { id: 2, name: 'email', type: 'text', placeholder: '이메일 주소' },
+  { id: 3, name: 'pw', type: 'password', placeholder: '비밀번호' },
+];
+
+const INPUT_DATA_BUSINESS = [
+  { id: 1, name: 'name', type: 'text', placeholder: '사업자명' },
+  { id: 2, name: 'num', type: 'text', placeholder: '사업자번호' },
+  { id: 3, name: 'email', type: 'text', placeholder: '이메일 주소' },
+  { id: 4, name: 'pw', type: 'password', placeholder: '비밀번호' },
+];
 
 const SignUp = () => {
   return (
@@ -16,9 +30,14 @@ const SignUp = () => {
         <h1>회원가입 (개인회원)</h1>
         <div className="form">
           <div className="userInfo">
-            <input type="text" placeholder="이름" />
-            <input type="text" placeholder="이메일 주소" />
-            <input type="password" placeholder="비밀번호" />
+            {INPUT_DATA_INDIVIDUAL.map(info => (
+              <Input
+                key={info.id}
+                name={info.name}
+                type={info.type}
+                placeholder={info.placeholder}
+              />
+            ))}
           </div>
           <div className="inputBox">
             <input type="checkbox" name="check1" />
@@ -45,9 +64,14 @@ const SignUp = () => {
         <h1>회원가입 (사업자)</h1>
         <div className="form">
           <div className="userInfo">
-            <input type="text" placeholder="사업자명" />
-            <input type="text" placeholder="사업자 번호" />
-            <input type="password" placeholder="비밀번호" />
+            {INPUT_DATA_BUSINESS.map(info => (
+              <Input
+                key={info.id}
+                name={info.name}
+                type={info.type}
+                placeholder={info.placeholder}
+              />
+            ))}
           </div>
           {TERMS.map(info => (
             <div className="inputBox" key={info.id}>
