@@ -47,7 +47,6 @@ const SignUp = () => {
           <div className="userInfo">
             <input type="text" placeholder="사업자명" />
             <input type="text" placeholder="사업자 번호" />
-            <input type="text" placeholder="이메일 주소" />
             <input type="password" placeholder="비밀번호" />
           </div>
           {TERMS.map(info => (
