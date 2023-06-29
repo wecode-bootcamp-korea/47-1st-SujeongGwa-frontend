@@ -4,16 +4,58 @@ import Input from '../../components/Component/Input/Input';
 import './SignUp.scss';
 
 const INPUT_DATA_INDIVIDUAL = [
-  { id: 1, name: 'name', type: 'text', placeholder: '이름' },
-  { id: 2, name: 'email', type: 'text', placeholder: '이메일 주소' },
-  { id: 3, name: 'pw', type: 'password', placeholder: '비밀번호' },
+  {
+    id: 1,
+    name: 'name',
+    className: 'inputValue',
+    type: 'text',
+    placeholder: '이름',
+  },
+  {
+    id: 2,
+    name: 'email',
+    className: 'inputValue',
+    type: 'text',
+    placeholder: '이메일 주소',
+  },
+  {
+    id: 3,
+    name: 'pw',
+    className: 'inputValue',
+    type: 'password',
+    placeholder: '비밀번호',
+  },
 ];
 
 const INPUT_DATA_BUSINESS = [
-  { id: 1, name: 'name', type: 'text', placeholder: '사업자명' },
-  { id: 2, name: 'num', type: 'text', placeholder: '사업자번호' },
-  { id: 3, name: 'email', type: 'text', placeholder: '이메일 주소' },
-  { id: 4, name: 'pw', type: 'password', placeholder: '비밀번호' },
+  {
+    id: 1,
+    name: 'name',
+    className: 'inputValue',
+    type: 'text',
+    placeholder: '사업자명',
+  },
+  {
+    id: 2,
+    name: 'num',
+    className: 'inputValue',
+    type: 'text',
+    placeholder: '사업자번호',
+  },
+  {
+    id: 3,
+    name: 'email',
+    className: 'inputValue',
+    type: 'text',
+    placeholder: '이메일 주소',
+  },
+  {
+    id: 4,
+    name: 'pw',
+    className: 'inputValue',
+    type: 'password',
+    placeholder: '비밀번호',
+  },
 ];
 
 const SignUp = () => {
@@ -33,6 +75,7 @@ const SignUp = () => {
             {INPUT_DATA_INDIVIDUAL.map(info => (
               <Input
                 key={info.id}
+                className={info.className}
                 name={info.name}
                 type={info.type}
                 placeholder={info.placeholder}
@@ -66,6 +109,7 @@ const SignUp = () => {
           <div className="userInfo">
             {INPUT_DATA_BUSINESS.map(info => (
               <Input
+                className={info.className}
                 key={info.id}
                 name={info.name}
                 type={info.type}
