@@ -4,6 +4,7 @@ import Nav from './components/Nav/Nav';
 import Main from './pages/Main/Main';
 import SignUp from './pages/SignUp/SignUp';
 import Footer from './components/Footer/Footer';
+import Order from './pages/Order/Order';
 
 const Router = () => {
   return (
@@ -12,6 +13,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/order" element={<Order />} />
       </Routes>
       <Footer />
     </BrowserRouter>
