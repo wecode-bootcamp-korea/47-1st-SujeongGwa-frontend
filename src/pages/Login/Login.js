@@ -24,7 +24,7 @@ const SignUp = () => {
           </div>
           <button>로그인</button>
           <span>
-            <Link to="/signup">
+            <Link to="/users/signup">
               회원이 아니신가요? 여기를 클릭하여 회원이 되어주세요.
             </Link>
           </span>

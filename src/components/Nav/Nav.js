@@ -13,14 +13,14 @@ const Nav = () => {
             </Link>
           </li>
           {MAIN_MENU_LIST.map(info => (
-            <li className="menulist" key={info.key}>
+            <li className="menulist" key={info.id}>
               <Link to={info.link}>{info.text}</Link>
             </li>
           ))}
         </ul>
         <ul className="utilMenu">
           {UTIL_MENU_LIST.map(info => (
-            <li className="menulist" key={info.key}>
+            <li className="menulist" key={info.id}>
               <Link to={info.link}>{info.text}</Link>
             </li>
           ))}
@@ -29,21 +29,21 @@ const Nav = () => {
       {/* <div className="subCateroryName">
         <ul className="porcelainTile on">
           {PORCELAIN_TILE_LIST.map(info => (
-            <li className="menulist" key={info.key}>
+            <li className="menulist" key={info.id}>
               <Link to={info.link}>{info.text}</Link>
             </li>
           ))}
         </ul>
         <ul className="wallTile">
           {WALL_TILE_LIST.map(info => (
-            <li className="menulist" key={info.key}>
+            <li className="menulist" key={info.id}>
               <Link to={info.link}>{info.text}</Link>
             </li>
           ))}
         </ul>
         <ul className="floorTile">
           {FLOOR_TILE_LIST.map(info => (
-            <li className="menulist" key={info.key}>
+            <li className="menulist" key={info.id}>
               <Link to={info.link}>{info.text}</Link>
             </li>
           ))}
@@ -62,7 +62,7 @@ const MAIN_MENU_LIST = [
 ];
 
 const UTIL_MENU_LIST = [
-  { id: 1, link: '/', text: 'LOGIN' },
+  { id: 1, link: '/users/login', text: 'LOGIN' },
   { id: 2, link: '/', text: 'CART' },
 ];
 

@@ -19,7 +19,7 @@ const INPUT_DATA_INDIVIDUAL = [
   },
   {
     id: 3,
-    name: 'pw',
+    name: 'password',
     className: 'inputValue',
     type: 'password',
     placeholder: '비밀번호',
@@ -36,7 +36,7 @@ const INPUT_DATA_BUSINESS = [
   },
   {
     id: 2,
-    name: 'num',
+    name: 'account',
     className: 'inputValue',
     type: 'text',
     placeholder: '사업자번호',
@@ -50,7 +50,7 @@ const INPUT_DATA_BUSINESS = [
   },
   {
     id: 4,
-    name: 'pw',
+    name: 'password',
     className: 'inputValue',
     type: 'password',
     placeholder: '비밀번호',
