@@ -10,7 +10,7 @@ const PorcelainA = ({ productListBox }) => {
             <Link to={product.to}>
               <div className="imgBox">
                 <img src={product.img} alt={product.name} />
-                <button type="sumbit">+ 장바구니 담기</button>
+                <button type="sumbit">+ 카트 담기</button>
               </div>
               <p>{product.name}</p>
               <span>{product.type}</span>
