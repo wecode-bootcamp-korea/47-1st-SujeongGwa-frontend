@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Login.scss';
 
-const SignUp = () => {
+const Login = () => {
   return (
     <div className="login">
       <div className="container individual">
@@ -34,4 +34,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Login;
