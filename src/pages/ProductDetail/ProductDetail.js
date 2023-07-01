@@ -13,6 +13,9 @@ const ProductDetail = () => {
       .then(res => res.json())
       .then(data => setProduct(data.product));
   }, []);
+
+  const totalPrice = product[0].price * countNumber.toLocaleString();
+
   return (
     <div className="productDetail">
       <div className="productBox">
@@ -28,20 +31,30 @@ const ProductDetail = () => {
             <h1 className="productName">상품이름:{product.name}</h1>
             <p className="mainDescription">{product.description}</p>
             <ul className="descriptionBox">
-              <li className="usingType">TYPE</li>
-              <p className="itemUsingType">{product.type}</p>
-              <li className="usingType">용도</li>
-              <p className="itemUsingType">{product.using}</p>
-              <li className="usingType">SIZE</li>
-              <p className="itemUsingType">{product.size}</p>
-              <li className="usingType">THICKNESS</li>
-              <p className="itemUsingType">{product.thickness}</p>
-              <li className="usingType">WEIGHT</li>
-              <p className="itemUsingType">{product.weight}</p>
+              <li className="usingType">
+                <div>TYPE</div>
+                <p className="itemUsingType">{product.type}</p>
+              </li>
+              <li className="usingType">
+                용도
+                <p className="itemUsingType">{product.using}</p>
+              </li>
+              <li className="usingType">
+                SIZE
+                <p className="itemUsingType">{product.size}</p>
+              </li>
+              <li className="usingType">
+                THICKNESS
+                <p className="itemUsingType">{product.thickness}</p>
+              </li>
+              <li className="usingType">
+                WEIGHT
+                <p className="itemUsingType">{product.weight}</p>
+              </li>
             </ul>
             <div className="productCountBox">
               <Count countNumber={countNumber} setCount={setCount} />
-              <div className="totalPrice">{product.price * countNumber}원</div>
+              <div className="totalPrice">{totalPrice}원</div>
             </div>
             <button
               type="submit"

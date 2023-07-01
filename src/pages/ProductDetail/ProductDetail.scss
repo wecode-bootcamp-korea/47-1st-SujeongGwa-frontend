@@ -36,12 +36,12 @@
 
       .productName {
         font-size: 1.6em;
-        font-weight: 400;
+        font-weight: 600;
       }
 
       .descriptionBox {
         .usingType {
-          font-weight: 700;
+          font-weight: 500;
           padding-top: 1em;
         }
 
@@ -55,6 +55,7 @@
     .productCountBox {
       display: flex;
       justify-content: space-between;
+      border-top: 2px solid #333;
 
       .totalPrice {
         display: flex;
