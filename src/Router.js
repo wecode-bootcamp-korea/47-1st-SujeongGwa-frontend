@@ -5,6 +5,7 @@ import Nav from './components/Nav/Nav';
 import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
 import Footer from './components/Footer/Footer';
+import OrderResult from './pages/OrderResult/OrderResult';
 
 const Router = () => {
   return (
@@ -14,6 +15,7 @@ const Router = () => {
         <Route path="/" element={<Main />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/orderResult" element={<OrderResult />} />
       </Routes>
       <Footer />
     </BrowserRouter>
