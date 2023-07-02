@@ -13,11 +13,11 @@ const Footer = () => {
             </p>
             <div className="inputBox">
               <input type="checkbox" name="check1" />
-              <label for="checkText">본인은 14세 이상입니다.(필수)</label>
+              <label htmlFor="checkText">본인은 14세 이상입니다.(필수)</label>
             </div>
             <div className="inputBox">
               <input type="checkbox" name="check2" />
-              <label for="checkText">
+              <label htmlFor="checkText">
                 개인정보수집 및 이용에 동의합니다(필수)
               </label>
             </div>
@@ -29,7 +29,9 @@ const Footer = () => {
             </p>
             <div className="inputBox">
               <input type="checkbox" name="check3" />
-              <label for="checkText">마케팅 정보 수신에 동의합니다(필수)</label>
+              <label htmlFor="checkText">
+                마케팅 정보 수신에 동의합니다(필수)
+              </label>
             </div>
             <div className="description">
               뉴스레터 이메일을 통한 광고성 정보 수신에 동의합니다.
