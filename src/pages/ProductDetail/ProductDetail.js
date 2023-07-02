@@ -14,7 +14,8 @@ const ProductDetail = () => {
       .then(data => setProduct(data.product));
   }, []);
 
-  const totalPrice = product[0].price * countNumber.toLocaleString();
+  const totalPrice =
+    product.length > 0 ? product[0].price * countNumber.toLocaleString() : 0;
 
   return (
     <div className="productDetail">
