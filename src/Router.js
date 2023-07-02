@@ -14,11 +14,8 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/signup" element={<SignUp />} />
-<<<<<<< HEAD
         <Route path="/order" element={<Order />} />
-=======
         <Route path="/login" element={<Login />} />
->>>>>>> main
       </Routes>
       <Footer />
     </BrowserRouter>
