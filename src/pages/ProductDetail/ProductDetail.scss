@@ -57,17 +57,27 @@
       justify-content: space-between;
       border-top: 2px solid #333;
 
-      .totalPrice {
+      .totalResult {
         display: flex;
-        align-items: center;
-        font-size: 1.3em;
-        font-weight: 600;
+        flex-direction: column;
+        padding-top: 1.5em;
+        align-items: flex-end;
+
+        .totalPrice {
+          display: flex;
+          align-items: center;
+          font-size: 1.2em;
+          font-weight: 600;
+          line-height: 1.4em;
+        }
       }
     }
+
     .alertTextBox {
       display: flex;
       justify-content: center;
       margin-bottom: 1.2em;
+
       .alertText {
         color: red;
       }
@@ -91,6 +101,7 @@
 
     .constructionWay {
       display: flex;
+
       .testCase {
         width: 30em;
         border-radius: 0.5em;
@@ -100,9 +111,11 @@
     .constructionText {
       display: flex;
       flex-direction: column;
+
       h1 {
         margin-bottom: 1em;
       }
+
       h3 {
         padding-top: 0.6em;
         font-size: 1.3em;

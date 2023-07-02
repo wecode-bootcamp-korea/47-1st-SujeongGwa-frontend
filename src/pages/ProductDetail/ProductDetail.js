@@ -67,8 +67,10 @@ const ProductDetail = () => {
                 setCount={setCount}
                 isDisabled={showAlert}
               />
-              <div className="totalPrice">{totalPrice}원</div>
-              <div className="totalPrice">{totalWeight}Kg</div>
+              <div className="totalResult">
+                <div className="totalPrice">{totalPrice}원</div>
+                <div className="totalPrice">{totalWeight}Kg</div>
+              </div>
             </div>
             {showAlert && (
               <div className="alertTextBox">
