@@ -1,11 +1,20 @@
+import React from 'react';
 import './Count.scss';
 
-const Count = ({ countNumber, setCount }) => {
+const Count = ({ countNumber, setCount, isDisabled }) => {
   const decrease = () => {
     if (countNumber <= 1) {
       return;
     } else {
-      setCount(countNumber - 1);
+      setCount(prevCount => prevCount - 1);
+    }
+  };
+
+  const increase = () => {
+    if (isDisabled) {
+      return;
+    } else {
+      setCount(prevCount => prevCount + 1);
     }
   };
 
@@ -14,11 +23,7 @@ const Count = ({ countNumber, setCount }) => {
       <div className="countInput">
         <button onClick={decrease}>-</button>
         <div className="countInputText">{countNumber}</div>
-        <button
-          onClick={() => {
-            setCount(countNumber + 1);
-          }}
-        >
+        <button onClick={increase} disabled={isDisabled}>
           +
         </button>
       </div>

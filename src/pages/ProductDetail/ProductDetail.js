@@ -7,15 +7,23 @@ const ProductDetail = () => {
   const navigate = useNavigate();
   const [countNumber, setCount] = useState(1);
   const [product, setProduct] = useState([]);
+  const [weight, setWeight] = useState(product.weight);
 
   useEffect(() => {
     fetch('./data/product.json')
       .then(res => res.json())
-      .then(data => setProduct(data.product));
+      .then(data => {
+        setProduct(data.product);
+        if (data.product.length > 0) {
+          setWeight(data.product[0].weight);
+        }
+      });
   }, []);
 
   const totalPrice =
     product.length > 0 ? product[0].price * countNumber.toLocaleString() : 0;
+  const totalWeight = weight * countNumber.toLocaleString();
+  const showAlert = totalWeight > 1000;
 
   return (
     <div className="productDetail">
@@ -37,34 +45,48 @@ const ProductDetail = () => {
                 <p className="itemUsingType">{product.type}</p>
               </li>
               <li className="usingType">
-                용도
+                <div>용도</div>
                 <p className="itemUsingType">{product.using}</p>
               </li>
               <li className="usingType">
-                SIZE
+                <div>SIZE</div>
                 <p className="itemUsingType">{product.size}</p>
               </li>
               <li className="usingType">
-                THICKNESS
+                <div>THICKNESS</div>
                 <p className="itemUsingType">{product.thickness}</p>
               </li>
               <li className="usingType">
-                WEIGHT
+                <div>WEIGHT</div>
                 <p className="itemUsingType">{product.weight}</p>
               </li>
             </ul>
             <div className="productCountBox">
-              <Count countNumber={countNumber} setCount={setCount} />
+              <Count
+                countNumber={countNumber}
+                setCount={setCount}
+                isDisabled={showAlert}
+              />
               <div className="totalPrice">{totalPrice}원</div>
+              <div className="totalPrice">{totalWeight}Kg</div>
             </div>
+            {showAlert && (
+              <div className="alertTextBox">
+                <p className="alertText">
+                  무게는 1000Kg 이상 구매하실 수 없습니다.
+                </p>
+              </div>
+            )}
             <button
               type="submit"
               className="saveCart"
               onClick={() => {
+                setWeight({ totalWeight });
                 navigate('/cart');
               }}
+              disabled={totalWeight > 1000}
             >
-              장바구니 버튼 컴포넌트 분리
+              장바구니에 담기
             </button>
           </div>
         ))}
