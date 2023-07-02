@@ -29,7 +29,7 @@ const SignUpContainer = props => {
       .then(data => {
         if (data && data.message === 'SIGNUP_SUCCESS') {
           localStorage.setItem('TOKEN', data.token);
-          alert('환영합니다.');
+          alert('환영합니다! 1000 포인트가 적립되었습니다 :)');
           navigate('/');
         } else if (data && data.message === 'INVALID_USER_REQUEST') {
           alert('입력한 정보를 다시 확인해 주세요.');
