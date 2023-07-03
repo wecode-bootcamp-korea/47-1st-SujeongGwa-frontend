@@ -6,6 +6,7 @@ import SignUp from './pages/SignUp/SignUp';
 import Login from './pages/Login/Login';
 import Footer from './components/Footer/Footer';
 import OrderResult from './pages/OrderResult/OrderResult';
+import NotFound from './components/NotFound/NotFound';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 
 const Router = () => {
@@ -17,6 +18,7 @@ const Router = () => {
         <Route path="/productDetail" element={<ProductDetail />} />
         <Route path="/orderResult" element={<OrderResult />} />
         <Route path="/users/signup" element={<SignUp />} />
+        <Route path="/*" element={<NotFound />} />
         <Route path="/users/login" element={<Login />} />
       </Routes>
       <Footer />
