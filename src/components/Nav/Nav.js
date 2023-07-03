@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Nav.scss';
 
 const Nav = () => {
-  const [isHovering, setIsHovering] = useState(false);
+  const [isHovering, setIsHovering] = useState(true);
   const [selectedMainMenuType, setSelectedMainMenuType] = useState('');
 
   const handleMouseOver = type => {
@@ -52,6 +52,8 @@ const Nav = () => {
                 isHovering && selectedMainMenuType === info.type ? 'on' : ''
               }`}
               key={info.id}
+              onMouseOver={() => handleMouseOver(info.type)}
+              onMouseOut={handleMouseOut}
             >
               {info.titleList.map(info => (
                 <li className="menulist" key={info.id}>
@@ -76,7 +78,7 @@ const MAIN_MENU_LIST = [
 
 const UTIL_MENU_LIST = [
   { id: 1, link: '/users/login', text: 'LOGIN' },
-  { id: 2, link: '/', text: 'CART' },
+  { id: 2, link: '/cart', text: 'CART' },
 ];
 
 const SUB_CATEGORY_LIST = [
