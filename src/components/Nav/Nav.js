@@ -13,7 +13,7 @@ const Nav = () => {
             </Link>
           </li>
           {MAIN_MENU_LIST.map(info => (
-            <li className="menulist" key={info.id}>
+            <li className="menulist" key={`menu-list-${info.id}`}>
               <Link to={info.link}>{info.text}</Link>
             </li>
           ))}
@@ -26,6 +26,8 @@ const Nav = () => {
           ))}
         </ul>
       </div>
+
+      {/* 서브카테고리 구현예정입니다. */}
       {/* <div className="subCateroryName">
         <ul className="porcelainTile on">
           {PORCELAIN_TILE_LIST.map(info => (

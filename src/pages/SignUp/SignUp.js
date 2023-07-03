@@ -73,27 +73,26 @@ const SignUp = () => {
 
   return (
     <div className="signUp">
-      {}
-      <div
-        className="accountSelect"
-        style={{ display: signUpBtn ? 'none' : 'block' }}
-      >
-        <div className="accountSelectContainer">
-          <button
-            className="blackBtn"
-            onClick={() => handleButtonClick('개인 회원가입')}
-          >
-            개인 회원가입
-          </button>
-          <span>|</span>
-          <button
-            className="blackBtn"
-            onClick={() => handleButtonClick('사업자 회원가입')}
-          >
-            사업자 회원가입
-          </button>
+      {!signUpBtn && (
+        <div className="accountSelect">
+          <div className="accountSelectContainer">
+            <button
+              className="blackBtn"
+              onClick={() => handleButtonClick('개인 회원가입')}
+            >
+              개인 회원가입
+            </button>
+            <span>|</span>
+            <button
+              className="blackBtn"
+              onClick={() => handleButtonClick('사업자 회원가입')}
+            >
+              사업자 회원가입
+            </button>
+          </div>
         </div>
-      </div>
+      )}
+
       {signUpBtn && (
         <SignUpContainer
           signUp={signUp}
