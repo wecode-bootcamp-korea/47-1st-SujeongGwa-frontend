@@ -35,10 +35,12 @@
     flex-direction: column;
 
     .orderItemBox {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      padding: 1em;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      text-align: center;
+      width: 50em;
+      margin: 0 auto;
+
       li {
         list-style: none;
         padding: 1em;
@@ -67,6 +69,7 @@
     padding: 3em 0;
     display: flex;
     flex-direction: row;
+
     .deliveryInfoBox {
       h4 {
         padding: 0.7em;
@@ -76,6 +79,7 @@
   .gotoHomeBox {
     display: flex;
     flex-direction: row-reverse;
+
     .gotoHome {
       align-items: center;
       margin-bottom: 3.5em;

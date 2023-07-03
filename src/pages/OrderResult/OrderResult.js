@@ -4,24 +4,24 @@ import './OrderResult.scss';
 
 const OrderResult = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState([]);
-  const [order, setOrder] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     fetch('./data/orderUser.json')
       .then(res => res.json())
-      .then(data => setUser(data.user));
+      .then(data => setUsers(data.user));
   }, []);
 
   useEffect(() => {
     fetch('./data/orderResult.json')
       .then(res => res.json())
-      .then(data => setOrder(data.orderResult));
+      .then(data => setOrders(data.orderResult));
   }, []);
 
   return (
     <div className="orderResult">
-      {user.map(user => (
+      {users.map(user => (
         <div className="orderText" key={user.id}>
           <h1> 감사합니다, {user.name} 님</h1>
           <p className="thanksText">
@@ -30,7 +30,7 @@ const OrderResult = () => {
           </p>
         </div>
       ))}
-      {order.map(orderResult => (
+      {orders.map(orderResult => (
         <div className="orderNumberBox" key={orderResult.id}>
           <li> 주문번호 </li>
           <li> {orderResult.id} </li>
@@ -43,7 +43,7 @@ const OrderResult = () => {
             <li key={el.id}>{el.name}</li>
           ))}
         </ul>
-        {order.map(orderResult => (
+        {orders.map(orderResult => (
           <div className="orderItemBox" key={orderResult.id}>
             <li>{orderResult.name} </li>
             <li>{orderResult.size} </li>
@@ -63,7 +63,7 @@ const OrderResult = () => {
           ))}
         </div>
         <div className="orderUserBox">
-          {user.map(user => (
+          {users.map(user => (
             <ul className="orderUserInfo" key={user.id}>
               <li>{user.name}</li>
               <li>{user.email}</li>
