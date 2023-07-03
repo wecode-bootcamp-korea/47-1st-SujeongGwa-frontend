@@ -3,6 +3,7 @@
   display: flex;
   justify-content: space-between;
   height: 100vh;
+
   .buyerInfo {
     padding: 3em 5em;
 
@@ -15,6 +16,7 @@
       font-size: 1.3em;
       margin-bottom: 0.5em;
     }
+
     .shippingAddress {
       display: flex;
       flex-direction: column;
@@ -39,6 +41,7 @@
         display: flex;
         border-bottom: 1px solid rgb(180, 180, 180);
         align-items: flex-end;
+
         .zipCodeInput {
           font-size: 1em;
           width: 100%;
@@ -47,6 +50,7 @@
 
           background-color: transparent;
         }
+
         .findZipCode {
           color: azure;
           background-color: #333;
@@ -76,6 +80,7 @@
         font-size: 1.3em;
         padding-bottom: 0.7em;
       }
+
       .final {
         text-align: end;
       }
@@ -105,6 +110,7 @@
         justify-content: space-between;
         gap: 0.4em;
       }
+
       .deleteBox {
         .deleteButton {
           font-size: 1em;

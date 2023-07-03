@@ -2,25 +2,25 @@ import { useState, useEffect } from 'react';
 import './Order.scss';
 
 const Order = () => {
-  const [item, setItem] = useState([]);
-  const [user, setUser] = useState([]);
+  const [items, setItems] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     fetch('./data/order.json')
       .then(res => res.json())
-      .then(data => setItem(data.item));
+      .then(data => setItems(data.item));
   }, []);
 
   useEffect(() => {
     fetch('./data/user.json')
       .then(res => res.json())
-      .then(data => setUser(data.user));
+      .then(data => setUsers(data.user));
   }, []);
 
   return (
     <div className="order">
-      {user.map(el => (
-        <div className="buyerInfo" key={user.id}>
+      {users.map(el => (
+        <div className="buyerInfo" key={users.id}>
           <h1>주문자 정보</h1>
           <p className="userInfo"> {el.name} </p>
           <p className="userInfo"> {el.email}</p>
@@ -50,8 +50,8 @@ const Order = () => {
             <p className="resultText">0 원</p>
           </div>
         </div>
-        {item.map(el => (
-          <div className="total" key={item.id}>
+        {items.map(el => (
+          <div className="total" key={items.id}>
             <div className="item">
               <img
                 src={el.imageUrl}
