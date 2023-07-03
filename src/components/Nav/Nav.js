@@ -28,7 +28,7 @@ const Nav = () => {
           {MAIN_MENU_LIST.map(info => (
             <li
               className="menulist"
-              key={info.id}
+              key={`menu-list-${info.id}`}
               onMouseOver={() => handleMouseOver(info.type)}
               onMouseOut={handleMouseOut}
             >
