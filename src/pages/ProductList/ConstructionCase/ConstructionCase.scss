@@ -4,21 +4,25 @@
   justify-content: center;
   align-items: center;
   margin: 5em 0;
+
   .constructionCaseBox {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     width: 90em;
+
     li {
       position: relative;
       display: flex;
       align-items: center;
       width: 44em;
       margin-bottom: 2em;
+
       img {
         display: block;
         max-width: 100%;
       }
+
       p {
         position: absolute;
         right: 0;
