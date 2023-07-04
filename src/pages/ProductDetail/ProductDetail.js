@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import './ProductDetail.scss';
 import Count from '../../components/Count/Count';
@@ -8,9 +8,13 @@ const ProductDetail = () => {
   const [countNumber, setCount] = useState(1);
   const [product, setProduct] = useState([]);
   const [weight, setWeight] = useState(product.weight);
+  const token = localStorage.getItem('token');
+  const params = useParams();
+  const id = params.id;
 
   useEffect(() => {
     fetch('./data/product.json')
+      //fetch("/api/good/name/${id}")
       .then(res => res.json())
       .then(data => {
         setProduct(data.product);
@@ -18,7 +22,7 @@ const ProductDetail = () => {
           setWeight(data.product[0].weight);
         }
       });
-  }, []);
+  }, [id]);
 
   const totalPrice =
     product.length > 0 ? product[0].price * countNumber.toLocaleString() : 0;
