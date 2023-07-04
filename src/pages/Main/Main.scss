@@ -82,12 +82,29 @@
             .itemStory {
               font-size: 1.2em;
             }
+
+            .textButton {
+              button {
+                cursor: pointer;
+                margin-top: 1.5em;
+                padding: 1em 2.2em;
+                border: 1px solid #333;
+                background: none;
+                font-size: 1.5em;
+                text-decoration: none;
+                color: #333;
+                span {
+                  margin-right: 1em;
+                }
+              }
+            }
           }
+
           .slideBox {
             position: relative;
+
             .productBox {
               display: flex;
-              // width: 75%;
               width: 1200px;
               overflow: hidden;
 
@@ -102,15 +119,18 @@
                 img {
                   width: 200px;
                 }
+
                 p {
                   margin: 1em 0 0.2em;
                   font-weight: 600;
                 }
               }
+
               .product:first-child {
                 padding: 0;
               }
             }
+
             .slideBtn {
               cursor: pointer;
               opacity: 0;
@@ -134,12 +154,14 @@
               right: 0;
             }
           }
+
           .slideBox:hover {
             .slideBtn {
               transition: all 0.3s;
               opacity: 0.9;
             }
           }
+
           .slideBox:not(:hover) {
             .slideBtn {
               transition: all 0.3s;
@@ -147,6 +169,7 @@
             }
           }
         }
+
         .mainContetnSlide01 {
           .slideBox {
             .productBox {
@@ -158,17 +181,6 @@
             }
           }
         }
-        // .mainContetnSlide03 {
-        //   .slideBox {
-        //     .productBox {
-        //       .product {
-        //         img {
-        //           width: 200px;
-        //         }
-        //       }
-        //     }
-        //   }
-        // }
 
         [class^='mainCotentScene'] {
           display: flex;
@@ -191,6 +203,7 @@
               }
             }
           }
+
           .text {
             max-width: 30%;
             color: #333;
@@ -211,6 +224,22 @@
 
             .itemStory {
               font-size: 1.2em;
+            }
+
+            .textButton {
+              button {
+                cursor: pointer;
+                margin-top: 1.5em;
+                padding: 1em 2.2em;
+                border: 1px solid #333;
+                background: none;
+                font-size: 1.5em;
+                text-decoration: none;
+                color: #333;
+                span {
+                  margin-right: 1em;
+                }
+              }
             }
           }
         }

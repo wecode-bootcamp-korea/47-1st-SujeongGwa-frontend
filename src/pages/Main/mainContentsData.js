@@ -1,6 +1,7 @@
 export const MAIN_CONTENTS_LIST = [
   {
     id: 1,
+    kind: 'PORCELAIN TILE',
     SlideClassName: 'mainContetnSlide01',
     SlideDiscriptTitle: '건축용 스톤이라면',
     SlideDiscriptText:
@@ -54,6 +55,7 @@ export const MAIN_CONTENTS_LIST = [
   },
   {
     id: 2,
+    kind: 'WALL TILE',
     SlideClassName: 'mainContetnSlide02',
     SlideDiscriptTitle: '건축용 스톤이라면',
     SlideDiscriptText:
@@ -87,27 +89,27 @@ export const MAIN_CONTENTS_LIST = [
       },
       {
         id: 5,
-        img: 'https://raw.githubusercontent.com/Teachsue/Image_URL/main/F_2_KSW_04_3.jpg',
-        name: 'F_2_KSW_05_3',
+        img: 'https://raw.githubusercontent.com/Teachsue/Image_URL/main/F_2_KSW_05_2.jpg',
+        name: 'F_2_KSW_05_2',
         type: 'SOFT MATT',
       },
       {
         id: 6,
-        img: 'https://raw.githubusercontent.com/Teachsue/Image_URL/main/F_2_KSW_04_3.jpg',
-        name: 'F_2_KSW_06_3',
+        img: 'https://raw.githubusercontent.com/Teachsue/Image_URL/main/F_2_KSW_06_2.jpg',
+        name: 'F_2_KSW_06_2',
         type: 'SOFT MATT',
       },
       {
         id: 7,
-        img: 'https://raw.githubusercontent.com/Teachsue/Image_URL/main/F_2_KSW_04_3.jpg',
-        name: 'F_2_KSW_06_3',
-        type: 'SOFT MATT',
+        img: 'https://raw.githubusercontent.com/Teachsue/Image_URL/main/F_2_KSW_07_1.jpg',
+        name: 'F_2_KSW_07_1',
+        type: 'MATT',
       },
       {
         id: 8,
-        img: 'https://raw.githubusercontent.com/Teachsue/Image_URL/main/F_2_KSW_04_3.jpg',
-        name: 'F_2_KSW_06_3',
-        type: 'SOFT MATT',
+        img: 'https://raw.githubusercontent.com/Teachsue/Image_URL/main/F_2_KSW_08_1.jpg',
+        name: 'F_2_KSW_08_1',
+        type: 'MATT',
       },
     ],
     SceneClassName: 'mainCotentScene02',
@@ -119,6 +121,7 @@ export const MAIN_CONTENTS_LIST = [
   },
   {
     id: 3,
+    kind: 'FLOOR TILE',
     SlideClassName: 'mainContetnSlide03',
     SlideDiscriptTitle: '건축용 스톤이라면',
     SlideDiscriptText: '얇고 강하게 또 가볍게',
@@ -163,15 +166,15 @@ export const MAIN_CONTENTS_LIST = [
       },
       {
         id: 7,
-        img: 'https://raw.githubusercontent.com/Teachsue/Image_URL/main/W_1_SDH_05_1.jpg',
-        name: 'P_2_SDH_02_1',
-        type: 'GLOSSY',
+        img: 'https://raw.githubusercontent.com/Teachsue/Image_URL/main/W_1_SDH_07_2.jpg',
+        name: 'W_1_SDH_07_2',
+        type: 'HARD MATT',
       },
       {
         id: 8,
-        img: 'https://raw.githubusercontent.com/Teachsue/Image_URL/main/W_1_SDH_06_1.jpg',
-        name: 'P_2_SDH_03_1',
-        type: 'MATT',
+        img: 'https://raw.githubusercontent.com/Teachsue/Image_URL/main/W_1_SDH_08_2.jpg',
+        name: 'W_1_SDH_08_2',
+        type: 'HARD MATT',
       },
     ],
     SceneClassName: 'mainCotentScene03',

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import { MAIN_CONTENTS_LIST } from './mainContentsData';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -60,6 +62,12 @@ const Main = () => {
                   <p className="discriptTitle">{info.SlideDiscriptTitle}</p>
                   <p className="discriptText">{info.SlideDiscriptText}</p>
                   <p className="itemStory">{info.SlideItemStory}</p>
+                  <Link to="/" className="textButton">
+                    <button>
+                      <span>{info.kind} 보러가기</span>
+                      <FontAwesomeIcon icon={faChevronRight} />
+                    </button>
+                  </Link>
                 </div>
                 <div className="slideBox">
                   <ul className="productBox">
@@ -108,6 +116,12 @@ const Main = () => {
                   <p className="discriptTitle">{info.SceneDiscriptTitle}</p>
                   <p className="discriptText">{info.SceneDiscriptText}</p>
                   <p className="itemStory">{info.SceneItemStory}</p>
+                  <Link to="/" className="textButton">
+                    <button>
+                      <span>{info.kind} 시공사례 보러가기</span>
+                      <FontAwesomeIcon icon={faChevronRight} />
+                    </button>
+                  </Link>
                 </div>
               </section>
             </div>
