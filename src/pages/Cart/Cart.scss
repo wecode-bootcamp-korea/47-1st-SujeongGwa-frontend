@@ -43,17 +43,36 @@
         }
       }
 
+      .cartEmpty {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1000px;
+        margin: 0 auto;
+        height: 10em;
+        p {
+          color: #999;
+          font-weight: 300;
+        }
+      }
+
       .cartListBox {
         .cartList {
           padding: 1.5em 0;
           border-bottom: 1px solid #666;
+          font-size: 1.2em;
 
           &:last-child {
             border-bottom: none;
           }
 
-          li.deletBtn {
+          .count {
+            margin: 0;
+          }
+
+          .deletBtn {
             button {
+              cursor: pointer;
               border: 0;
               background: none;
               font-size: 1em;
@@ -78,7 +97,6 @@
           grid-template-columns: repeat(2, 1fr);
           text-align: center;
           align-items: center;
-
           padding: 0.5em 0;
         }
 
@@ -86,6 +104,13 @@
           border-bottom: 1px solid #333;
           font-size: 1.2em;
           font-weight: 600;
+        }
+
+        .weightLimitTextBox {
+          height: 1em;
+          color: #f00;
+          text-align: center;
+          line-height: 1em;
         }
       }
 

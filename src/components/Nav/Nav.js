@@ -65,7 +65,7 @@ const MAIN_MENU_LIST = [
 
 const UTIL_MENU_LIST = [
   { id: 1, link: '/users/login', text: 'LOGIN' },
-  { id: 2, link: '/', text: 'CART' },
+  { id: 2, link: '/cart', text: 'CART' },
 ];
 
 // const PORCELAIN_TILE_LIST = [

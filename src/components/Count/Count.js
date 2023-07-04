@@ -1,28 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Count.scss';
 
 const Count = ({ countNumber, setCount, isDisabled }) => {
+  const [count, setInternalCount] = useState(Number(countNumber) || 1);
+
+  useEffect(() => {
+    setInternalCount(Number(countNumber) || 1);
+  }, [countNumber]);
+
   const decrease = () => {
-    if (countNumber <= 1) {
+    if (count <= 1) {
       return;
     } else {
-      setCount(prevCount => prevCount - 1);
+      const newCount = count - 1;
+      setInternalCount(newCount);
+      setCount(newCount);
     }
   };
 
   const increase = () => {
-    if (isDisabled) {
-      return;
-    } else {
-      setCount(prevCount => prevCount + 1);
-    }
+    const newCount = count + 1;
+    setInternalCount(newCount);
+    setCount(newCount);
   };
 
   return (
     <div className="count">
       <div className="countInput">
         <button onClick={decrease}>-</button>
-        <div className="countInputText">{countNumber}</div>
+        <div className="countInputText">{count}</div>
         <button onClick={increase} disabled={isDisabled}>
           +
         </button>
