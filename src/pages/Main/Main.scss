@@ -82,22 +82,101 @@
             .itemStory {
               font-size: 1.2em;
             }
+
+            .textButton {
+              button {
+                cursor: pointer;
+                margin-top: 1.5em;
+                padding: 1em 2.2em;
+                border: 1px solid #333;
+                background: none;
+                font-size: 1.5em;
+                text-decoration: none;
+                color: #333;
+                span {
+                  margin-right: 1em;
+                }
+              }
+            }
           }
 
-          .productBox {
-            display: flex;
-            width: 75%;
+          .slideBox {
+            position: relative;
 
-            .product {
-              width: 25em;
+            .productBox {
               display: flex;
-              flex-direction: column;
-              align-items: center;
-              padding: 0 3em;
+              width: 1200px;
+              overflow: hidden;
 
-              p {
-                margin: 1em 0 0.2em;
-                font-weight: 600;
+              .product {
+                width: 25em;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-left: 3em;
+                transition: 0.5s ease;
+
+                img {
+                  width: 200px;
+                }
+
+                p {
+                  margin: 1em 0 0.2em;
+                  font-weight: 600;
+                }
+              }
+
+              .product:first-child {
+                padding: 0;
+              }
+            }
+
+            .slideBtn {
+              cursor: pointer;
+              opacity: 0;
+              position: absolute;
+              width: 70px;
+              height: 70px;
+              top: 35%;
+              border: none;
+              background: #333;
+              color: #fffef2;
+              z-index: 999;
+
+              .slideBtnArrow {
+                font-size: 30px;
+              }
+            }
+            .prevBtn {
+              left: 0;
+            }
+            .nextBtn {
+              right: 0;
+            }
+          }
+
+          .slideBox:hover {
+            .slideBtn {
+              transition: all 0.3s;
+              opacity: 0.9;
+            }
+          }
+
+          .slideBox:not(:hover) {
+            .slideBtn {
+              transition: all 0.3s;
+              opacity: 0;
+            }
+          }
+        }
+
+        .mainContetnSlide01 {
+          .slideBox {
+            .productBox {
+              .product {
+                img {
+                  width: 300px;
+                }
               }
             }
           }
@@ -110,7 +189,7 @@
 
           .sceneBox {
             display: flex;
-            width: 65%;
+            width: 60%;
 
             .scene {
               width: 120%;
@@ -124,6 +203,7 @@
               }
             }
           }
+
           .text {
             max-width: 30%;
             color: #333;
@@ -144,6 +224,22 @@
 
             .itemStory {
               font-size: 1.2em;
+            }
+
+            .textButton {
+              button {
+                cursor: pointer;
+                margin-top: 1.5em;
+                padding: 1em 2.2em;
+                border: 1px solid #333;
+                background: none;
+                font-size: 1.5em;
+                text-decoration: none;
+                color: #333;
+                span {
+                  margin-right: 1em;
+                }
+              }
             }
           }
         }
