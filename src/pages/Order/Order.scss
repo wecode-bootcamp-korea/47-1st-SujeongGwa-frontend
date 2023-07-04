@@ -90,11 +90,17 @@
 
       .perchaseOption {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
         text-align: center;
         align-items: center;
-        width: 1000px;
+        width: 1500px;
         margin: 0 auto;
+
+        .count {
+          margin: 0;
+          align-items: center;
+          justify-content: center;
+        }
       }
 
       .deleteBox {
@@ -109,14 +115,25 @@
 
     .buttonBox {
       display: flex;
-      justify-content: flex-end;
+      flex-direction: column;
+      justify-content: space-between;
       padding: 1em;
+      align-items: center;
+
+      .alertTextBox {
+        .alertText {
+          margin-top: 2em;
+          color: #ff0000;
+        }
+      }
 
       .payment {
         background-color: #333;
+        border: 0;
         color: white;
-        width: 10em;
-        height: 3em;
+        margin-top: 3em;
+        width: 20em;
+        height: 4em;
       }
     }
   }

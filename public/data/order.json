@@ -1,34 +1,35 @@
 {
-  "item": [
+  "data": [
     {
-      "id": "1",
-      "name": "SPR002",
-      "size": "600X600X10",
+      "id": "363",
+      "sub_category_id": "600*1200*20",
+      "surface_type_id": "HARD MATT",
+      "name": "P_1_CTN_01",
       "weight": "30",
       "type": "천장용",
-      "price": "10000",
-      "count": "5",
-      "imageUrl": "images/6.jpg"
+      "price": "10000.00",
+      "sell_counts": "5",
+      "image_url": "images/6.jpg"
     },
     {
       "id": "2",
+      "sub_category_id": 2,
+      "surface_type_id": 2,
       "name": "SDH211",
-      "size": "600X600X10",
       "weight": "60",
-      "type": "바닥용",
-      "price": "30000",
-      "count": "3",
-      "imageUrl": "images/11.jpg"
+      "price": "30000.00",
+      "sell_counts": "3",
+      "image_url": "images/11.jpg"
     },
     {
       "id": "3",
+      "sub_category_id": 3,
+      "surface_type_id": 3,
       "name": "SDdasdsa",
-      "size": "600X600X10",
       "weight": "90",
-      "type": "바닥용",
-      "price": "300000",
-      "count": "7",
-      "imageUrl": "images/11.jpg"
+      "price": "300000.00",
+      "sell_counts": "7",
+      "image_url": "images/11.jpg"
     }
   ]
 }
