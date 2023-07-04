@@ -14,8 +14,15 @@ import './Main.scss';
 const Main = () => {
   const [slidePx, setSlidePx] = useState({});
 
+  const porcelainContentPx = 420;
+  const wallFoolrContentPx = 245;
+
+  const porcelainMaxSlidePx = -1200;
+  const wallFoolrMaxSlidePx = -850;
+
   const toPrev = id => {
-    const newSlidePx = (slidePx[id] || 0) + (id === 2 || id === 3 ? 245 : 420);
+    const newSlidePx =
+      (slidePx[id] || 0) + (id === 1 ? porcelainContentPx : wallFoolrContentPx);
     if (newSlidePx <= 0) {
       setSlidePx(prevState => ({
         ...prevState,
@@ -25,8 +32,9 @@ const Main = () => {
   };
 
   const toNext = id => {
-    const newSlidePx = (slidePx[id] || 0) - (id === 2 || id === 3 ? 245 : 420);
-    const maxSlidePx = id === 2 || id === 3 ? -850 : -1200;
+    const newSlidePx =
+      (slidePx[id] || 0) - (id === 1 ? porcelainContentPx : wallFoolrContentPx);
+    const maxSlidePx = id === 1 ? porcelainMaxSlidePx : wallFoolrMaxSlidePx;
 
     if (newSlidePx >= maxSlidePx) {
       setSlidePx(prevState => ({
