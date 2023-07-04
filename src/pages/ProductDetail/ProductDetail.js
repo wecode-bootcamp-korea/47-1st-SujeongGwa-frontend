@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import './ProductDetail.scss';
 import Count from '../../components/Count/Count';
@@ -8,13 +8,44 @@ const ProductDetail = () => {
   const [countNumber, setCount] = useState(1);
   const [product, setProduct] = useState([]);
   const [weight, setWeight] = useState(product.weight);
-  const token = localStorage.getItem('token');
-  const params = useParams();
-  const id = params.id;
+
+  const surface_type = ['Matt', 'Hard Matt', 'Soft Matt', 'LappaTo', 'Glossy'];
+  const sub_categories = [
+    '600x600x10mm',
+    '600x600x20mm',
+    '600x1200x11mm',
+    '600x1200x20mm',
+    '400x800x11mm',
+    '300x600x9mm',
+    '200x600x9mm',
+    '300x300x9mm',
+    '200x400x9mm',
+  ];
+
+  const findSurfaceType = surfaceTypeId => {
+    const foundTypes = surface_type.filter(
+      (type, index) => index + 1 === surfaceTypeId
+    );
+    return foundTypes.length > 0 ? foundTypes[0] : '';
+  };
+
+  const surfaceTypeId = product[0].surface_type_id;
+  const surfaceType = findSurfaceType(surfaceTypeId);
+
+  const findSize = subCategoryId => {
+    const foundSizes = sub_categories.filter(
+      (size, index) => index + 1 === subCategoryId
+    );
+    return foundSizes.length > 0 ? foundSizes[0] : '';
+  };
+
+  const subCategoryId = product[0].sub_category_id;
+  const size = findSize(subCategoryId);
+
+  const thick = size.split('x')[2].replace('mm', '').trim();
 
   useEffect(() => {
     fetch('./data/product.json')
-      //fetch("/api/good/name/${id}")
       .then(res => res.json())
       .then(data => {
         setProduct(data.product);
@@ -22,7 +53,7 @@ const ProductDetail = () => {
           setWeight(data.product[0].weight);
         }
       });
-  }, [id]);
+  }, []);
 
   const totalPrice =
     product.length > 0 ? product[0].price * countNumber.toLocaleString() : 0;
@@ -31,22 +62,22 @@ const ProductDetail = () => {
 
   return (
     <div className="productDetail">
-      <div className="productBox">
-        <div className="itemImageBox">
-          <img
-            src="./images/6.jpg"
-            alt="productImage"
-            className="productImage"
-          />
-        </div>
-        {product.map(product => (
-          <div className="productDescription" key={product.id}>
+      {product.map(product => (
+        <div className="productBox" key={product.id}>
+          <div className="itemImageBox">
+            <img
+              src={product.image_url}
+              alt="productImage"
+              className="productImage"
+            />
+          </div>
+          <div className="productDescription">
             <h1 className="productName">상품이름:{product.name}</h1>
             <p className="mainDescription">{product.description}</p>
             <ul className="descriptionBox">
               <li className="usingType">
                 <div>TYPE</div>
-                <p className="itemUsingType">{product.type}</p>
+                <p className="itemUsingType">{surfaceType}</p>
               </li>
               <li className="usingType">
                 <div>용도</div>
@@ -54,11 +85,11 @@ const ProductDetail = () => {
               </li>
               <li className="usingType">
                 <div>SIZE</div>
-                <p className="itemUsingType">{product.size}</p>
+                <p className="itemUsingType">{size}</p>
               </li>
               <li className="usingType">
                 <div>THICKNESS</div>
-                <p className="itemUsingType">{product.thickness}</p>
+                <p className="itemUsingType">{thick}</p>
               </li>
               <li className="usingType">
                 <div>WEIGHT</div>
@@ -95,8 +126,8 @@ const ProductDetail = () => {
               장바구니에 담기
             </button>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
       <div className="productExample">
         <div className="constructionText">
           <h1 className="constructionTitle">SJG TILE 시공 방법</h1>
