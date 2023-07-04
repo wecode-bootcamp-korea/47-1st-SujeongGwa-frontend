@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Count from '../../components/Count/Count';
 import './Cart.scss';
 
 const Cart = () => {
@@ -27,10 +28,10 @@ const Cart = () => {
               <ul className="cartList" key={info.id}>
                 <li>{info.kind}</li>
                 <li>{info.size}</li>
-                <li>{info.name}</li>
+                <li>{info.tileName}</li>
                 <li>{info.weight}</li>
                 <li>
-                  <button>카운트컴포넌트</button>
+                  <Count />
                 </li>
                 <li>{info.price}원</li>
                 <li className="deletBtn">
@@ -48,11 +49,12 @@ const Cart = () => {
               ))}
             </ul>
             <ul className="totalList">
-              <li className="totalKg">800</li>
+              <li className="totalKg">500</li>
               <li className="totalAmount">160,000</li>
             </ul>
           </div>
           <div className="buttonBox">
+            {/* <Count /> */}
             {/* 버튼컴포넌트 사용예정입니다 */}
             <button className="blackBtn">메인으로</button>
             <button className="blackBtn">이전으로</button>

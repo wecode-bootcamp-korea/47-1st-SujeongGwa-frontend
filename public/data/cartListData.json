@@ -3,7 +3,7 @@
     "id": 1,
     "kind": "PORCELAIN",
     "size": "600X600X10MM",
-    "name": "SDK 1203",
+    "tileName": "SDK 1203",
     "weight": "400",
     "price": "80000"
   },
@@ -11,7 +11,7 @@
     "id": 2,
     "kind": "PORCELAIN",
     "size": "600X600X10MM",
-    "name": "SDK 1203",
+    "tileName": "SDK 1203",
     "weight": "400",
     "price": "80000"
   },
@@ -19,7 +19,7 @@
     "id": 3,
     "kind": "PORCELAIN",
     "size": "600X600X10MM",
-    "name": "SDK 1203",
+    "tileName": "SDK 1203",
     "weight": "400",
     "price": "80000"
   },
@@ -27,7 +27,7 @@
     "id": 4,
     "kind": "PORCELAIN",
     "size": "600X600X10MM",
-    "name": "SDK 1203",
+    "tileName": "SDK 1203",
     "weight": "400",
     "price": "80000"
   },
@@ -35,7 +35,7 @@
     "id": 5,
     "kind": "PORCELAIN",
     "size": "600X600X10MM",
-    "name": "SDK 1203",
+    "tileName": "SDK 1203",
     "weight": "400",
     "price": "80000"
   }
