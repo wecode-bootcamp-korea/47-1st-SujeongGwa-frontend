@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './ProductDetail.scss';
 import Count from '../../components/Count/Count';
 
-const ProductDetail = () => {
+const ProductDetail = ({ productId }) => {
   const navigate = useNavigate();
   const [countNumber, setCount] = useState(1);
   const [product, setProduct] = useState([]);
@@ -14,9 +14,7 @@ const ProductDetail = () => {
       .then(res => res.json())
       .then(data => {
         setProduct(data.product);
-        if (data.product.length > 0) {
-          setWeight(data.product[0].weight);
-        }
+        setWeight(data.product[0].weight);
       });
   }, []);
 

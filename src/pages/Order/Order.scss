@@ -28,42 +28,27 @@
         margin-bottom: 1.5em;
       }
 
+      .orderTypeName {
+        margin-top: 1em;
+        color: #9888;
+      }
+
       .input {
         font-size: 1em;
         width: 100%;
-        height: 5em;
+        height: 4em;
         border: none;
         border-bottom: 1px solid rgb(180, 180, 180);
         background-color: transparent;
-      }
-
-      .zipCodeBox {
-        display: flex;
-        border-bottom: 1px solid rgb(180, 180, 180);
-        align-items: flex-end;
-
-        .zipCodeInput {
-          font-size: 1em;
-          width: 100%;
-          height: 5em;
-          border: none;
-
-          background-color: transparent;
-        }
-
-        .findZipCode {
-          color: azure;
-          background-color: #333;
-          border-radius: 0.25em;
-          width: 15em;
-          height: 5em;
+        &:focus {
+          outline: none;
         }
       }
     }
   }
 
   .perchaseBox {
-    width: 35vw;
+    width: 50%;
     height: 100vh;
     padding: 3em;
     background-color: rgb(246, 239, 223);
@@ -95,7 +80,6 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        gap: 2em;
         border-bottom: 1px solid rgb(180, 180, 180);
         padding: 1em 0;
 
@@ -105,10 +89,12 @@
       }
 
       .perchaseOption {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: 0.4em;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        text-align: center;
+        align-items: center;
+        width: 1000px;
+        margin: 0 auto;
       }
 
       .deleteBox {
