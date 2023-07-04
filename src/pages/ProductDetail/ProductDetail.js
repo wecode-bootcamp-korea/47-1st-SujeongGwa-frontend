@@ -7,7 +7,7 @@ const ProductDetail = () => {
   const navigate = useNavigate();
   const [countNumber, setCount] = useState(1);
   const [product, setProduct] = useState([]);
-  const [weight, setWeight] = useState(product.weight);
+  const [weight, setWeight] = useState('');
 
   const surface_type = ['Matt', 'Hard Matt', 'Soft Matt', 'LappaTo', 'Glossy'];
   const sub_categories = [
@@ -23,45 +23,34 @@ const ProductDetail = () => {
   ];
 
   const findSurfaceType = surfaceTypeId => {
-    const foundTypes = surface_type.filter(
-      (type, index) => index + 1 === surfaceTypeId
-    );
+    const foundTypes = surface_type.filter((v, i) => i + 1 === surfaceTypeId);
     return foundTypes.length > 0 ? foundTypes[0] : '';
   };
 
-  const surfaceTypeId = product[0].surface_type_id;
-  const surfaceType = findSurfaceType(surfaceTypeId);
-
   const findSize = subCategoryId => {
-    const foundSizes = sub_categories.filter(
-      (size, index) => index + 1 === subCategoryId
-    );
+    const foundSizes = sub_categories.filter((v, i) => i + 1 === subCategoryId);
     return foundSizes.length > 0 ? foundSizes[0] : '';
   };
 
-  const subCategoryId = product[0].sub_category_id;
-  const size = findSize(subCategoryId);
-
-  const thick = size.split('x')[2].replace('mm', '').trim();
-
   useEffect(() => {
-    fetch('./data/product.json')
-      .then(res => res.json())
-      .then(data => {
-        setProduct(data.product);
-        if (data.product.length > 0) {
-          setWeight(data.product[0].weight);
+    const fetchData = async () => {
+      try {
+        const response = await fetch('./data/product.json');
+        if (response.ok) {
+          const data = await response.json();
+          if (data.product.length > 0) {
+            setProduct(data.product);
+            setWeight(data.product[0].weight);
+          }
+        } else {
+          throw new Error('Error fetching data');
         }
-      });
-    // fetch('/api/products', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(Data),
-    // })
-    //   .then(res => res.json())
-    //   .then(data => {});
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const totalPrice =
@@ -86,7 +75,9 @@ const ProductDetail = () => {
             <ul className="descriptionBox">
               <li className="usingType">
                 <div>TYPE</div>
-                <p className="itemUsingType">{surfaceType}</p>
+                <p className="itemUsingType">
+                  {findSurfaceType(product.surface_type_id)}
+                </p>
               </li>
               <li className="usingType">
                 <div>용도</div>
@@ -94,11 +85,18 @@ const ProductDetail = () => {
               </li>
               <li className="usingType">
                 <div>SIZE</div>
-                <p className="itemUsingType">{size}</p>
+                <p className="itemUsingType">
+                  {findSize(product.sub_category_id)}
+                </p>
               </li>
               <li className="usingType">
                 <div>THICKNESS</div>
-                <p className="itemUsingType">{thick}</p>
+                <p className="itemUsingType">
+                  {findSize(product.sub_category_id)
+                    .split('x')[2]
+                    .replace('mm', '')
+                    .trim()}
+                </p>
               </li>
               <li className="usingType">
                 <div>WEIGHT</div>
