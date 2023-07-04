@@ -53,6 +53,15 @@ const ProductDetail = () => {
           setWeight(data.product[0].weight);
         }
       });
+    // fetch('/api/products', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(Data),
+    // })
+    //   .then(res => res.json())
+    //   .then(data => {});
   }, []);
 
   const totalPrice =
