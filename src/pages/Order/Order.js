@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Order.scss';
 import Count from '../../components/Count/Count';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Order = () => {
   const [items, setItems] = useState([]);
@@ -11,6 +11,7 @@ const Order = () => {
   const [prices, setTotalPrice] = useState(0);
   const navigate = useNavigate();
 
+  //카트에 GET, PATCH
   useEffect(() => {
     fetch('./data/order.json')
       .then(res => res.json())
@@ -27,6 +28,13 @@ const Order = () => {
       .then(res => res.json())
       .then(data => setUsers(data.user));
   }, []);
+
+  useEffect(() => {
+    if (items.length === 0) {
+      setTotalWeight(0);
+      setTotalPrice(0);
+    }
+  }, [items]);
 
   const setCountArray = (itemId, count) => {
     setItems(prevItems => {
@@ -67,7 +75,16 @@ const Order = () => {
   const totalWeight = weights;
   const showAlert = totalWeight > 1000;
 
-  //post요청시
+  const onRemove = itemId => {
+    setItems(prevItems => {
+      const itemsFilter = prevItems.filter(data => data.id !== itemId);
+      setTotalWeight(calculateTotalWeight(itemsFilter));
+      setTotalPrice(calculateTotalPrice(itemsFilter));
+      return itemsFilter;
+    });
+  };
+
+  //order에 POST
   const postProduct = () => {
     fetch('api/oder/주문번호', {
       method: 'POST',
@@ -135,6 +152,11 @@ const Order = () => {
             <p className="resultText">{weights} KG</p>
           </div>
         </div>
+        {items.length === 0 && (
+          <div className="orderEmpty">
+            <p>구매할 물품이 없습니다.</p>
+          </div>
+        )}
         {items.map(el => (
           <div className="total" key={el.id}>
             <div className="item">
@@ -151,7 +173,7 @@ const Order = () => {
               <div className="perchaseOption">
                 <Count
                   className="count"
-                  count={el.count}
+                  count={el.sell_counts}
                   setCount={newCount => setCountArray(el.id, newCount)}
                   isDisabled={showAlert}
                 />
@@ -159,7 +181,11 @@ const Order = () => {
                 <p className="descriptionOption">{Number(el.price)} 원</p>
               </div>
               <div className="deleteBox">
-                <button type="submit" className="deleteButton">
+                <button
+                  type="submit"
+                  className="deleteButton"
+                  onClick={() => onRemove(el.id)}
+                >
                   ✕
                 </button>
               </div>
@@ -177,6 +203,16 @@ const Order = () => {
           >
             결제하기
           </button>
+          {items.length === 0 && (
+            <button
+              className="gotoHome"
+              onClick={() => {
+                navigate('/');
+              }}
+            >
+              홈으로
+            </button>
+          )}
           {showAlert && (
             <div className="alertTextBox">
               <p className="alertText">
