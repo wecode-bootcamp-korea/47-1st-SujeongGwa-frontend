@@ -18,6 +18,12 @@
         "quantity": 5,
         "name": "SDH_14",
         "surface_type_id": 2
+      },
+      {
+        "product_id": 13,
+        "quantity": 7,
+        "name": "SDH_zxc",
+        "surface_type_id": 2
       }
     ]
   }
