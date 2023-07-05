@@ -7,12 +7,17 @@ const OrderResult = () => {
   const [result, setResult] = useState(null);
 
   useEffect(() => {
-    fetch('./data/orderResult.json')
+    fetch('http://api주소:3000/oder', {
+      method: 'GET',
+      headers: {
+        authorization: 'Bearer 어쩌고저쩌고',
+      },
+    })
       .then(res => res.json())
       .then(data => {
         setResult([data.data]);
-        console.log(data);
-        console.log('가져온 데이터:', data);
+        // console.log(data);
+        // console.log('가져온 데이터:', data);
       });
   }, []);
 
