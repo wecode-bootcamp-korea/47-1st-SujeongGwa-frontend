@@ -1,122 +1,112 @@
 .order {
   padding-top: 5em;
-  display: flex;
-  justify-content: space-between;
-  height: 100vh;
 
-  .buyerInfo {
-    padding: 3em 5em;
+  .bigBox {
+    display: flex;
 
-    h1 {
-      margin-bottom: 1em;
-      font-size: 1.7em;
-    }
+    .buyerInfo {
+      width: 50%;
+      padding: 3em 5em;
 
-    .userInfo {
-      font-size: 1.3em;
-      margin-bottom: 0.5em;
-    }
-
-    .shippingAddress {
-      display: flex;
-      flex-direction: column;
-      padding-top: 4em;
-      width: 40em;
-
-      h2 {
+      h1 {
+        margin-bottom: 1em;
         font-size: 1.7em;
-        margin-bottom: 1.5em;
       }
 
-      .orderTypeName {
-        margin-top: 1em;
-        color: #9888;
+      .userInfo {
+        font-size: 1.3em;
+        margin-bottom: 0.5em;
       }
 
-      .input {
-        font-size: 1em;
-        width: 100%;
-        height: 4em;
-        border: none;
-        border-bottom: 1px solid rgb(180, 180, 180);
-        background-color: transparent;
-        &:focus {
-          outline: none;
+      .shippingAddress {
+        display: flex;
+        flex-direction: column;
+        padding-top: 4em;
+        width: 40em;
+
+        h2 {
+          font-size: 1.7em;
+          margin-bottom: 1.5em;
+        }
+
+        .orderTypeName {
+          margin-top: 1em;
+          color: #9888;
+        }
+
+        .input {
+          font-size: 1em;
+          width: 100%;
+          height: 4em;
+          border: none;
+          border-bottom: 1px solid rgb(180, 180, 180);
+          background-color: transparent;
+          &:focus {
+            outline: none;
+          }
         }
       }
     }
-  }
 
-  .perchaseBox {
-    width: 50%;
-    height: 100vh;
-    padding: 3em;
-    background-color: rgb(246, 239, 223);
+    .perchaseBox {
+      width: 50%;
+      height: 100vh;
+      padding: 3em;
+      background-color: rgb(246, 239, 223);
 
-    .payBox {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      padding-right: 1em;
-      padding-bottom: 1em;
-      border-bottom: 1px solid grey;
-
-      .resultText {
-        font-size: 1.3em;
-        padding-bottom: 0.7em;
-      }
-
-      .final {
-        text-align: end;
-      }
-    }
-    .orderEmpty {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      margin: 0 auto;
-      height: 20em;
-      font-size: 1em;
-    }
-    .total {
-      .indexBox {
-        border-bottom: 1px solid grey;
-      }
-
-      .item {
+      .payBox {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        border-bottom: 1px solid rgb(180, 180, 180);
-        padding: 1em 0;
+        padding-right: 1em;
+        padding-bottom: 1em;
+        border-bottom: 1px solid grey;
 
-        .perchaseImage {
-          width: 5.4em;
+        .resultText {
+          font-size: 1.3em;
+          padding-bottom: 0.7em;
+        }
+
+        .final {
+          text-align: end;
         }
       }
 
-      .perchaseOption {
-        display: grid;
-        grid-template-rows: auto;
-        text-align: center;
+      .orderEmpty {
+        display: flex;
+        justify-content: center;
         align-items: center;
-        width: 1500px;
+        width: 100%;
         margin: 0 auto;
-
-        .count {
-          margin: 0;
-          align-items: center;
-          justify-content: center;
-        }
+        height: 20em;
+        font-size: 1em;
       }
 
-      .deleteBox {
-        .deleteButton {
-          font-size: 1em;
-          color: #333;
-          background-color: transparent;
-          border: none;
+      .total {
+        .indexBox {
+          border-bottom: 1px solid grey;
+        }
+
+        .item {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          border-bottom: 1px solid rgb(180, 180, 180);
+          padding: 1em 0;
+
+          .perchaseImage {
+            width: 5.4em;
+          }
+        }
+
+        .perchaseOption {
+          justify-content: space-between;
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          align-items: center;
+          width: 1500px;
+          margin: 0 auto;
         }
       }
     }
