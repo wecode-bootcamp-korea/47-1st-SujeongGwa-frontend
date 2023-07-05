@@ -5,7 +5,8 @@
   width: 100%;
   height: 80px;
   background-color: #333;
-  border-bottom: 1px solid #666;
+  border-bottom: 1px solid #fffef2;
+  z-index: 9999;
 
   .cateroryName {
     display: flex;
@@ -34,7 +35,10 @@
       }
 
       li.menulist {
-        margin-right: 1em;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding-right: 1em;
 
         a {
           @include NavTopTextStyle;
@@ -73,18 +77,17 @@
   }
 
   .subCateroryName {
-    display: none;
     position: absolute;
     top: 5em;
     width: 100%;
     height: 30em;
-    background: #fffef2;
-    border-bottom: 1px solid #666;
+    background: #333;
+    border-bottom: 1px solid #fffef2;
 
     ul {
       display: none;
       height: 100%;
-      padding: 5.5em 0 0 5.5em;
+      padding: 4.5em 0 0 5.5em;
 
       li {
         font-size: 1.2em;
@@ -92,16 +95,16 @@
         width: 17%;
 
         a {
-          @include NavScrollTextStyle;
+          @include NavTopTextStyle;
           display: inline-block;
 
           &::after {
-            @include NavScrollTextUnder;
+            @include NavTopTextUnder;
           }
         }
 
         &:hover a::after {
-          @include NavScrollTexthover;
+          @include NavTopTexthover;
         }
       }
     }
@@ -111,78 +114,3 @@
     }
   }
 }
-
-//Nav스크롤이벤트 구현 시 필요
-// .nav.scroll {
-//   position: fixed;
-//   width: 100%;
-//   height: 80px;
-//   background-color: #fffef2;
-//   border-bottom: 1px solid #666;
-
-//   .container {
-//     display: flex;
-//     justify-content: space-between;
-//     width: 90%;
-//     height: 100%;
-//     margin: 0 auto;
-
-//     .mainMenu {
-//       display: flex;
-//       align-items: center;
-
-//       li.menulist {
-//         margin-right: 1em;
-
-//         a {
-//           @include NavScrollTextStyle;
-
-//           &::after {
-//             @include NavScrollTextUnder;
-//           }
-//         }
-
-//         &:hover a::after {
-//           @include NavScrollTexthover;
-//         }
-//       }
-
-//       li.logo {
-//         margin-right: 1em;
-
-//         a {
-
-//           img {
-//             display: block;
-//             width: 4em;
-//           }
-//         }
-//       }
-//     }
-
-//     .utilMenu {
-//       display: flex;
-//       align-items: center;
-
-//       li {
-//         margin-left: 1em;
-
-//         a {
-//           @include NavScrollTextStyle;
-
-//           &::after {
-//             @include NavScrollTextUnder;
-//           }
-//         }
-
-//         &:hover a::after {
-//           @include NavScrollTexthover;
-//         }
-//       }
-//     }
-//   }
-// }
-
-// .main {
-//   height: 2000px;
-// }

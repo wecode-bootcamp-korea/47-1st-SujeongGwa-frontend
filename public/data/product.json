@@ -1,0 +1,16 @@
+{
+  "product": [
+    {
+      "id": "1",
+      "name": "FishSauce tile",
+      "description": "DH씨 추천의 최신 디자인의 친환경 타일",
+      "imgage": "./images/6.jpg",
+      "type": "MATT",
+      "using": "내장재",
+      "size": "600 X 600",
+      "thickness": "10",
+      "weight": "100",
+      "price": "1000"
+    }
+  ]
+}
