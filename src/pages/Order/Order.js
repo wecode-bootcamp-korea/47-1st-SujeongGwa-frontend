@@ -30,9 +30,16 @@ const Order = () => {
     return foundType.length > 0 ? foundType[0] : '';
   };
 
-  //카트에서 GET
+  //카트에서 GET 성공
   useEffect(() => {
-    fetch('./data/order.json')
+    fetch('http://10.58.52.156:3000/carts', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization:
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ3LCJpYXQiOjE2ODg1NDQ0MTcsImV4cCI6MTY4OTMyMjAxN30.aoZuWkjMATz_yu8LnTgZwt5NFkelVcWotCyLx-4ZP8I',
+      },
+    })
       .then(res => res.json())
       .then(data => {
         setItems(data.data);
