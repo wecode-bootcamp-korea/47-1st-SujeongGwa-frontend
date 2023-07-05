@@ -35,39 +35,6 @@ const Cart = () => {
       });
   }, []);
 
-  // const makePayment = () => {
-  //   // Create an array to store the cart items data
-  //   const cartItems = [];
-
-  //   console.log(cartItems);
-  //   // Loop through the items to get the cartId and countNumber
-  //   items.forEach(item => {
-  //     const { cartId, count } = item;
-  //     cartItems.push({
-  //       productId: cartId,
-  //       quantity: count,
-  //     });
-  //   });
-
-  //   fetch('http://10.58.52.235:3000/orders', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //     },
-  //     body: JSON.stringify(cartItems),
-  //   })
-  //     .then(res => {
-  //       if (res.ok === true) {
-  //         return res.json();
-  //       }
-  //     })
-  //     .then(data => {
-  //       if (data && data.message === 'SUCCESS_CREATE_ORDER') {
-  //         navigate('/orders');
-  //       }
-  //     });
-  // };
-
   const decrease = (items, cartId) => {
     return items.map(item =>
       item.cartId === cartId && item.count > 1
@@ -138,22 +105,19 @@ const Cart = () => {
   };
 
   const sub_categories = [
-    '600x600x10mm',
-    '600x600x20mm',
-    '600x1200x11mm',
-    '600x1200x20mm',
-    '400x800x11mm',
-    '300x600x9mm',
-    '200x600x9mm',
-    '300x300x9mm',
-    '200x400x9mm',
+    { id: 1, sizes: '600x600x10mm' },
+    { id: 2, sizes: '600x600x20mm' },
+    { id: 3, sizes: '600x1200x11mm' },
+    { id: 4, sizes: '600x1200x20mm' },
+    { id: 5, sizes: '400x800x11mm' },
+    { id: 6, sizes: '300x600x9mm' },
+    { id: 7, sizes: '200x600x9mm' },
+    { id: 8, sizes: '300x300x9mm' },
+    { id: 9, sizes: '200x400x9mm' },
   ];
 
   const findSize = subCategoryId => {
-    const foundSizes = sub_categories.filter(
-      (type, idx) => idx + 1 === subCategoryId
-    );
-    return foundSizes.length > 0 ? foundSizes[0] : '';
+    return sub_categories.find(el => el.id === subCategoryId).sizes;
   };
 
   return (
