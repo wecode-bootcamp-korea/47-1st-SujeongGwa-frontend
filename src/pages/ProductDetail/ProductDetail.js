@@ -62,6 +62,30 @@ const ProductDetail = ({ productId }) => {
   const surfaceTypeId = product[0]?.surface_type_id;
   const surfaceType = findSurfaceType(surfaceTypeId);
 
+  fetch('http://10.58.52.50:3000/carts', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization:
+        'Barear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUxLCJpYXQiOjE2ODg1NDcwNjIsImV4cCI6MTY4OTMyNDY2Mn0.WVFv6HOg7thszXAoVo4JyQV6xiQtrU5PV96Lx1Gw1eE',
+      //token,
+    },
+    body: JSON.stringify({
+      productId: product.id,
+      quantity: product.countNumber,
+    }),
+  })
+    .then(response => {
+      if (response.ok === true) {
+        return response.json();
+      }
+    })
+    .then(data => {
+      // if (data.message === 'SUCCESS_CREATE_CART') {
+      // localStorage.getItem(token);
+      // }
+    }); //},[token])
+
   return (
     <div className="productDetail">
       {product.map(el => (
