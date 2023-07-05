@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Nav.scss';
 
 const Nav = () => {
   const [isHovering, setIsHovering] = useState(true);
   const [selectedMainMenuType, setSelectedMainMenuType] = useState('');
-  const [users, setUsers] = useState([]);
+  // const [subCategory, setSubCategory] = useState([]);
 
-  useEffect(() => {
-    fetch('https://reqres.in/api/users')
-      .then(response => response.json())
-      .then(result => setUsers(result.data));
-  }, []);
+  // useEffect(() => {
+  //   fetch('http://10.58.52.136:3000/goods/category')
+  //     .then(response => response.json())
+  //     .then(result => setSubCategory(result.data));
+  // }, []);
+
+  // console.log(subCategory);
 
   const handleMouseOver = type => {
     setSelectedMainMenuType(type);
@@ -64,7 +66,7 @@ const Nav = () => {
             >
               {info.titleList.map(info => (
                 <li className="menulist" key={info.id}>
-                  <Link to={`/category/${goodId}`}>{info.text}</Link>
+                  <Link to={`/goods/category/${info.id}`}>{info.text}</Link>
                 </li>
               ))}
             </ul>
@@ -78,9 +80,9 @@ const Nav = () => {
 export default Nav;
 
 const MAIN_MENU_LIST = [
-  { id: 1, link: '/', text: 'PORCELAIN TILE', type: 'PORCELAIN' },
-  { id: 2, link: '/', text: 'WALL TILE', type: 'WALL' },
-  { id: 3, link: '/', text: 'FLOOR TILE', type: 'FLOOR' },
+  { id: 1, text: 'PORCELAIN TILE', type: 'PORCELAIN' },
+  { id: 2, text: 'WALL TILE', type: 'WALL' },
+  { id: 3, text: 'FLOOR TILE', type: 'FLOOR' },
 ];
 
 const UTIL_MENU_LIST = [
@@ -99,7 +101,7 @@ const SUB_CATEGORY_LIST = [
       { id: 3, text: '600X1200X11MM' },
       { id: 4, text: '600X600X20MM' },
       { id: 5, text: '400X800X11MM' },
-      { id: 6, text: '시공사례' },
+      // { id: 6, text: '시공사례' },
     ],
   },
   {
@@ -107,9 +109,9 @@ const SUB_CATEGORY_LIST = [
     className: 'wallTile',
     type: 'WALL',
     titleList: [
-      { id: 1, text: '300X600MM' },
-      { id: 2, text: '200X600MM' },
-      { id: 3, text: '시공사례' },
+      { id: 6, text: '300X600MM' },
+      { id: 7, text: '200X600MM' },
+      // { id: 3, text: '시공사례' },
     ],
   },
   {
@@ -117,9 +119,9 @@ const SUB_CATEGORY_LIST = [
     className: 'floorTile',
     type: 'FLOOR',
     titleList: [
-      { id: 1, text: '300X300MM' },
-      { id: 2, text: '200X400MM' },
-      { id: 3, text: '시공사례' },
+      { id: 8, text: '300X300MM' },
+      { id: 9, text: '200X400MM' },
+      // { id: 3, text: '시공사례' },
     ],
   },
 ];
