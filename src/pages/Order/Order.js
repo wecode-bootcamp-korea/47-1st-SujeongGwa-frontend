@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Order.scss';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Order = () => {
   const [items, setItems] = useState([]);
@@ -30,14 +30,13 @@ const Order = () => {
     return foundType.length > 0 ? foundType[0] : '';
   };
 
-  //카트에서 GET 성공
   useEffect(() => {
-    fetch('http://10.58.52.156:3000/carts', {
+    fetch(`http://10.58.52.235:3000/carts`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         authorization:
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ3LCJpYXQiOjE2ODg1NDQ0MTcsImV4cCI6MTY4OTMyMjAxN30.aoZuWkjMATz_yu8LnTgZwt5NFkelVcWotCyLx-4ZP8I',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI2LCJpYXQiOjE2ODgzODQ5OTAsImV4cCI6MTY4OTE2MjU5MH0.urhgUy5f7jRDn1wZh9IT_QZk-HT9wPNcYGkKe-U2zJc',
       },
     })
       .then(res => res.json())
@@ -63,38 +62,44 @@ const Order = () => {
     }));
   };
 
-  //order에 POST
+  //order에 POST : 200.OK
   const postProduct = () => {
-    fetch('api/oder/주문번호', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        // 'Bearer 어쩌고',
+    fetch(
+      `http://10.58.52.235:3000/orders`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization:
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI2LCJpYXQiOjE2ODgzODQ5OTAsImV4cCI6MTY4OTE2MjU5MH0.urhgUy5f7jRDn1wZh9IT_QZk-HT9wPNcYGkKe-U2zJc',
+        },
+        body: JSON.stringify({
+          address: inputValues.address,
+        }),
       },
-      body: JSON.stringify({
-        address: inputValues.address,
-      }),
-    })
+      []
+    )
       .then(res => {
-        if (res.status === 201) {
-          navigate('/orderResult', {
-            state: {
-              userName: items.name,
-              orderNumber: items.order_number,
-              price: items.total_price,
-              weight: items.total_weight,
-              address: items.address,
-              email: items.email,
-              product: [
-                {
-                  name: items.product.name,
-                  count: items.product.quantity,
-                  type: items.product.surfaceTypeId,
-                },
-              ],
-            },
-          });
-        } else if (res.message === '백엔드 메세지') {
+        if (res.status === 200) {
+          navigate(
+            '/orderResult'
+            // {
+            //   state: {
+            //     userName: items[0].name,
+            //     orderNumber: items[0].order_number,
+            //     price: items.total_price,
+            //     weight: items.total_weight,
+            //     address: items[0].address,
+            //     email: items.email,
+            //     product: [
+            //       {
+            //         name: items.product.name,
+            //         count: items.product.quantity,
+            //         type: items.product.surfaceTypeId,
+            //       },
+            //     ],
+          );
+        } else if (res.message === 'SUCCESS_CREATE_OREDER') {
           alert('결제에 실패하였습니다.');
         }
       })
@@ -169,13 +174,7 @@ const Order = () => {
             ))}
           </div>
           <div className="buttonBox">
-            <button
-              type="submit"
-              className="payment"
-              onClick={() => {
-                navigate('/orderResult');
-              }}
-            >
+            <button type="submit" className="payment" onClick={postProduct}>
               결제하기
             </button>
           </div>
