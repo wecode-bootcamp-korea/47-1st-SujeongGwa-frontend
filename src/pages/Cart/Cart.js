@@ -9,6 +9,8 @@ const Cart = () => {
   const [weights, setTotalWeight] = useState(0);
   const [prices, setTotalPrice] = useState(0);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     fetch('http://10.58.52.50:3000/carts', {
       method: 'GET',
@@ -47,7 +49,7 @@ const Cart = () => {
   //     });
   //   });
 
-  //   fetch('http://10.58.52.235:3000/order', {
+  //   fetch('http://10.58.52.235:3000/orders', {
   //     method: 'POST',
   //     headers: {
   //       'Content-Type': 'application/json;charset=utf-8',
@@ -60,8 +62,8 @@ const Cart = () => {
   //       }
   //     })
   //     .then(data => {
-  //       if (data && data.message === 'SUCCESS_CREATE_CART') {
-  //         navigate('/order');
+  //       if (data && data.message === 'SUCCESS_CREATE_ORDER') {
+  //         navigate('/orders');
   //       }
   //     });
   // };
@@ -237,15 +239,15 @@ const Cart = () => {
             </li>
             <li>
               <Link to="/order">
-                {/* <button
-                  className="blackBtn"
-                  disabled={showAlert || items.length === 0}
-                  onClick={makePayment}
-                > */}
                 <button
                   className="blackBtn"
                   disabled={showAlert || items.length === 0}
+                  onClick={() => navigate('/order')}
                 >
+                  {/* <button
+                  className="blackBtn"
+                  disabled={showAlert || items.length === 0}
+                > */}
                   주문하기
                 </button>
               </Link>
