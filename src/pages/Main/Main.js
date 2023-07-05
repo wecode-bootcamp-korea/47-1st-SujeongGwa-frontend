@@ -1,7 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import { MAIN_CONTENTS_LIST } from './mainContentsData';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faChevronLeft,
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
+
 import './Main.scss';
 
 const Main = () => {
+  const [slidePx, setSlidePx] = useState({});
+
+  const porcelainContentPx = 420;
+  const wallFoolrContentPx = 245;
+
+  const porcelainMaxSlidePx = -1200;
+  const wallFoolrMaxSlidePx = -850;
+
+  const toPrev = id => {
+    const newSlidePx =
+      (slidePx[id] || 0) + (id === 1 ? porcelainContentPx : wallFoolrContentPx);
+    if (newSlidePx <= 0) {
+      setSlidePx(prevState => ({
+        ...prevState,
+        [id]: newSlidePx,
+      }));
+    }
+  };
+
+  const toNext = id => {
+    const newSlidePx =
+      (slidePx[id] || 0) - (id === 1 ? porcelainContentPx : wallFoolrContentPx);
+    const maxSlidePx = id === 1 ? porcelainMaxSlidePx : wallFoolrMaxSlidePx;
+
+    if (newSlidePx >= maxSlidePx) {
+      setSlidePx(prevState => ({
+        ...prevState,
+        [id]: newSlidePx,
+      }));
+    }
+  };
+
   return (
     <main className="Main">
       <div className="container">
@@ -28,15 +70,47 @@ const Main = () => {
                   <p className="discriptTitle">{info.SlideDiscriptTitle}</p>
                   <p className="discriptText">{info.SlideDiscriptText}</p>
                   <p className="itemStory">{info.SlideItemStory}</p>
+                  <Link to="/" className="textButton">
+                    <button>
+                      <span>{info.kind} 보러가기</span>
+                      <FontAwesomeIcon icon={faChevronRight} />
+                    </button>
+                  </Link>
                 </div>
-                <div className="productBox">
-                  {PRODUCT_LIST_01.map(info => (
-                    <div className="product" key={info.id}>
-                      <img src={info.img} alt={info.name} />
-                      <p>{info.name}</p>
-                      <span>{info.type}</span>
-                    </div>
-                  ))}
+                <div className="slideBox">
+                  <ul className="productBox">
+                    {info.SlideProductList.map(product => (
+                      <li
+                        className="product"
+                        key={product.id}
+                        style={{
+                          transform: `translateX(${slidePx[info.id] || 0}px)`,
+                        }}
+                      >
+                        <img src={product.img} alt={product.name} />
+                        <p>{product.name}</p>
+                        <span>{product.type}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <button
+                    className="slideBtn prevBtn"
+                    onClick={() => toPrev(info.id)}
+                  >
+                    <FontAwesomeIcon
+                      icon={faChevronLeft}
+                      className="slideBtnArrow"
+                    />
+                  </button>
+                  <button
+                    className="slideBtn nextBtn"
+                    onClick={() => toNext(info.id)}
+                  >
+                    <FontAwesomeIcon
+                      icon={faChevronRight}
+                      className="slideBtnArrow"
+                    />
+                  </button>
                 </div>
               </section>
 
@@ -50,6 +124,12 @@ const Main = () => {
                   <p className="discriptTitle">{info.SceneDiscriptTitle}</p>
                   <p className="discriptText">{info.SceneDiscriptText}</p>
                   <p className="itemStory">{info.SceneItemStory}</p>
+                  <Link to="/" className="textButton">
+                    <button>
+                      <span>{info.kind} 시공사례 보러가기</span>
+                      <FontAwesomeIcon icon={faChevronRight} />
+                    </button>
+                  </Link>
                 </div>
               </section>
             </div>
@@ -61,61 +141,3 @@ const Main = () => {
 };
 
 export default Main;
-
-const MAIN_CONTENTS_LIST = [
-  {
-    id: 1,
-    SlideClassName: 'mainContetnSlide01',
-    SlideDiscriptTitle: '건축용 스톤이라면',
-    SlideDiscriptText:
-      '외부 환경에 강해야 한다. 외벽부터 실내까지 연출이 다양해야한다. 라돈 걱정 없이 안전해야 한다.',
-    SlideItemStory:
-      '자연석에 바라는 모든 것, 더 튼튼하게, 더 아름답게, 더 안전하게',
-    SceneClassName: 'mainCotentScene01',
-    SceneImg: './images/mc_1.jpeg',
-    SceneDiscriptTitle: '건축용 스톤이라면',
-    SceneDiscriptText:
-      '외부 환경에 강해야 한다. 외벽부터 실내까지 연출이 다양해야한다. 라돈 걱정 없이 안전해야 한다.',
-    SceneItemStory:
-      '자연석에 바라는 모든 것, 더 튼튼하게, 더 아름답게, 더 안전하게',
-  },
-  {
-    id: 2,
-    SlideClassName: 'mainContetnSlide02',
-    SlideDiscriptTitle: '건축용 스톤이라면',
-    SlideDiscriptText:
-      '외부 환경에 강해야 한다. 외벽부터 실내까지 연출이 다양해야한다. 라돈 걱정 없이 안전해야 한다.',
-    SlideItemStory:
-      '자연석에 바라는 모든 것, 더 튼튼하게, 더 아름답게, 더 안전하게',
-    SceneClassName: 'mainCotentScene02',
-    SceneImg: './images/mc_2.jpeg',
-    SceneDiscriptTitle: '건축용 스톤이라면',
-    SceneDiscriptText:
-      '외부 환경에 강해야 한다. 외벽부터 실내까지 연출이 다양해야한다. 라돈 걱정 없이 안전해야 한다.',
-    SceneItemStory:
-      '자연석에 바라는 모든 것, 더 튼튼하게, 더 아름답게, 더 안전하게',
-  },
-  {
-    id: 3,
-    SlideClassName: 'mainContetnSlide03',
-    SlideDiscriptTitle: '건축용 스톤이라면',
-    SlideDiscriptText:
-      '외부 환경에 강해야 한다. 외벽부터 실내까지 연출이 다양해야한다. 라돈 걱정 없이 안전해야 한다.',
-    SlideItemStory:
-      '자연석에 바라는 모든 것, 더 튼튼하게, 더 아름답게, 더 안전하게',
-    SceneClassName: 'mainCotentScene03',
-    SceneImg: './images/mc_3.jpeg',
-    SceneDiscriptTitle: '건축용 스톤이라면',
-    SceneDiscriptText:
-      '외부 환경에 강해야 한다. 외벽부터 실내까지 연출이 다양해야한다. 라돈 걱정 없이 안전해야 한다.',
-    SceneItemStory:
-      '자연석에 바라는 모든 것, 더 튼튼하게, 더 아름답게, 더 안전하게',
-  },
-];
-
-const PRODUCT_LIST_01 = [
-  { id: 1, img: './images/p_1_1.jpeg', name: 'SPM 1103', type: 'MATT' },
-  { id: 2, img: './images/p_1_2.jpeg', name: 'SPM 3055', type: 'MATT' },
-  { id: 3, img: './images/p_1_3.jpeg', name: 'SPM 3056', type: 'MATT' },
-  { id: 4, img: './images/p_1_1.jpeg', name: 'SPM 1103', type: 'MATT' },
-];
