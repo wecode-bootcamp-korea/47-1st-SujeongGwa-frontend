@@ -1,19 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Nav.scss';
 
 const Nav = () => {
   const [isHovering, setIsHovering] = useState(true);
   const [selectedMainMenuType, setSelectedMainMenuType] = useState('');
-  // const [subCategory, setSubCategory] = useState([]);
-
-  // useEffect(() => {
-  //   fetch('http://10.58.52.136:3000/goods/category')
-  //     .then(response => response.json())
-  //     .then(result => setSubCategory(result.data));
-  // }, []);
-
-  // console.log(subCategory);
 
   const handleMouseOver = type => {
     setSelectedMainMenuType(type);

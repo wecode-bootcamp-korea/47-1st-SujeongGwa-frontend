@@ -5,6 +5,8 @@ import './ProductList.scss';
 const ProductList = () => {
   const [rangking, setRangking] = useState([]);
   const [productListData, setProductListData] = useState([]);
+  const [subCategoryData, setSubCategoryData] = useState([]);
+  const [categoryTitle, setCategoryTitle] = useState('');
 
   const { sub_category_id } = useParams();
   useEffect(() => {
@@ -21,6 +23,24 @@ const ProductList = () => {
       .then(data => {
         setProductListData(data.data);
       });
+  }, [sub_category_id]);
+
+  useEffect(() => {
+    let categoryData = [];
+    let title = '';
+    if (sub_category_id >= 1 && sub_category_id <= 5) {
+      categoryData = PORCELAIN_SUB_CATEGORY;
+      title = 'PORCELAIN';
+    } else if (sub_category_id >= 6 && sub_category_id <= 7) {
+      categoryData = WALL_SUB_CATEGORY;
+      title = 'WALL';
+    } else if (sub_category_id >= 8 && sub_category_id <= 9) {
+      categoryData = FLOOR_TILE_SUB_CATEGORY;
+      title = 'FLOOR';
+    }
+
+    setSubCategoryData(categoryData);
+    setCategoryTitle(title);
   }, [sub_category_id]);
 
   const surfaceType = [
@@ -43,10 +63,10 @@ const ProductList = () => {
           {rangking.map(rangking => (
             <li key={rangking.id}>
               <h2>{rangking.top}</h2>
-              <Link to={rangking.link}>
+              <Link to={`/goods/name/${rangking.name}`}>
                 <div className="imgBox">
                   <img src={rangking.img} alt={rangking.name} />
-                  <button type="sumbit">+ 장바구니 담기</button>
+                  <button type="sumbit">+ 상품 보기</button>
                 </div>
                 <p>{rangking.name}</p>
                 <span>{rangking.type}</span>
@@ -57,16 +77,19 @@ const ProductList = () => {
       </section>
       <section className="subCategory">
         <div className="container">
-          <h1>PORCELAIN TILE</h1>
+          <h1>{categoryTitle} TILE</h1>
           <span>|</span>
           <ul className="subCategoryBox">
-            {SUB_CATEGORY.map(rangking => (
-              <li key={rangking.id}>
-                <Link to={`/goods/category/${rangking.id}`}>
-                  {rangking.name}
+            {subCategoryData.map(subCategory => (
+              <li key={subCategory.id}>
+                <Link to={`/goods/category/${subCategory.id}`}>
+                  {subCategory.name}
                 </Link>
               </li>
             ))}
+            <li className="case">
+              <Link to="/">시공사례</Link>
+            </li>
           </ul>
         </div>
       </section>
@@ -75,10 +98,10 @@ const ProductList = () => {
           {productListData.length > 0 &&
             productListData.map(product => (
               <li key={product.id}>
-                <Link to="/">
+                <Link to={`/goods/name/${product.name}`}>
                   <div className="imgBox">
                     <img src={product.image_url} alt={product.name} />
-                    <button type="sumbit">+ 카트 담기</button>
+                    <button>+ 상품 보기</button>
                   </div>
                   <p>{product.name}</p>
                   <span>{findSurFace(product.surface_type_id)}</span>
@@ -94,11 +117,21 @@ const ProductList = () => {
 
 export default ProductList;
 
-const SUB_CATEGORY = [
+const PORCELAIN_SUB_CATEGORY = [
   { id: 1, name: '600X600X10MM' },
   { id: 2, name: '600X600X20MM' },
   { id: 3, name: '600X1200X20MM' },
   { id: 4, name: '600X1200X11MM' },
   { id: 5, name: '400X800X10MM' },
   // { id: 6, name: '시공사례' },
+];
+
+const WALL_SUB_CATEGORY = [
+  { id: 6, name: '300X600MM' },
+  { id: 7, name: '200X600MM' },
+];
+
+const FLOOR_TILE_SUB_CATEGORY = [
+  { id: 8, name: '300X300MM' },
+  { id: 9, name: '200X400MM' },
 ];
