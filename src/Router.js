@@ -19,19 +19,18 @@ const Router = () => {
       <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/productList" element={<ProductList />} />
+        <Route
+          path="/goods/category/:sub_category_id"
+          element={<ProductList />}
+        />
         <Route path="/order" element={<Order />} />
         <Route path="/productDetail" element={<ProductDetail />} />
         <Route path="/orderResult" element={<OrderResult />} />
         <Route path="/users/signup" element={<SignUp />} />
-<<<<<<< HEAD
-        <Route path="/users/signin" element={<Login />} />
-=======
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/*" element={<NotFound />} />
-        <Route path="/users/login" element={<Login />} />
->>>>>>> main
+        <Route path="/users/signin" element={<Login />} />
       </Routes>
       <Footer />
     </BrowserRouter>
