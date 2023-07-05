@@ -16,7 +16,7 @@ const Cart = () => {
       method: 'GET',
       headers: {
         authorization:
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM3LCJpYXQiOjE2ODg0NzYwMzIsImV4cCI6MTY4OTI1MzYzMn0.1ntICFfbpT3HlDUODlV-sI-Fo2i_JxNruJwmlUtbF6w',
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM5LCJpYXQiOjE2ODg1MzUyMDIsImV4cCI6MTY4OTMxMjgwMn0.yLn9Nk8pTGl2oowowS97SSjwI0dAm7YZrdwEMqRqgSY',
       },
     })
       .then(res => res.json())
