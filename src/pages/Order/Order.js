@@ -56,30 +56,43 @@ const Order = () => {
     }));
   };
 
-  // //order에 POST
-  // const postProduct = () => {
-  //   fetch('api/oder/주문번호', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //     },
-  //     body: JSON.stringify({
-  //       address: inputValues.address,
-  //       total_price: totalPrice(items),
-  //       total_weight: totalWeight(items),
-  //     }),
-  //   })
-  //     .then(res => {
-  //       return res.json();
-  //     })
-  //     .then(data => {
-  //       if (data.message === 'CREATE_USER_SUCCESS!') {
-  //         navigate('/orderResult');
-  //       } else if (data.message === '백엔드 메세지') {
-  //         alert('구매에 실패하였습니다.');
-  //       }
-  //     });
-  // };
+  //order에 POST
+  const postProduct = () => {
+    fetch('api/oder/주문번호', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        // 'Bearer 어쩌고',
+      },
+      body: JSON.stringify({
+        address: inputValues.address,
+      }),
+    })
+      .then(res => {
+        if (res.status === 201) {
+          navigate('/orderResult', {
+            state: {
+              userName: items.name,
+              orderNumber: items.order_number,
+              price: items.total_price,
+              weight: items.total_weight,
+              address: items.address,
+              email: items.email,
+              product: [
+                {
+                  name: items.product.name,
+                  count: items.product.quantity,
+                  type: items.product.surfaceTypeId,
+                },
+              ],
+            },
+          });
+        } else if (res.message === '백엔드 메세지') {
+          alert('결제에 실패하였습니다.');
+        }
+      })
+      .then(data => {});
+  };
 
   return (
     <div className="order">
