@@ -5,6 +5,13 @@ import './Nav.scss';
 const Nav = () => {
   const [isHovering, setIsHovering] = useState(true);
   const [selectedMainMenuType, setSelectedMainMenuType] = useState('');
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch('https://reqres.in/api/users')
+      .then(response => response.json())
+      .then(result => setUsers(result.data));
+  }, []);
 
   const handleMouseOver = type => {
     setSelectedMainMenuType(type);
@@ -57,7 +64,7 @@ const Nav = () => {
             >
               {info.titleList.map(info => (
                 <li className="menulist" key={info.id}>
-                  <Link to={info.link}>{info.text}</Link>
+                  <Link to={`/category/${goodId}`}>{info.text}</Link>
                 </li>
               ))}
             </ul>
@@ -87,12 +94,12 @@ const SUB_CATEGORY_LIST = [
     className: 'porcelainTile',
     type: 'PORCELAIN',
     titleList: [
-      { id: 1, link: '/', text: '600X600X10MM' },
-      { id: 2, link: '/', text: '600X1200X20MM' },
-      { id: 3, link: '/', text: '600X1200X11MM' },
-      { id: 4, link: '/', text: '600X600X20MM' },
-      { id: 5, link: '/', text: '400X800X11MM' },
-      { id: 6, link: '/', text: '시공사례' },
+      { id: 1, text: '600X600X10MM' },
+      { id: 2, text: '600X1200X20MM' },
+      { id: 3, text: '600X1200X11MM' },
+      { id: 4, text: '600X600X20MM' },
+      { id: 5, text: '400X800X11MM' },
+      { id: 6, text: '시공사례' },
     ],
   },
   {
@@ -100,9 +107,9 @@ const SUB_CATEGORY_LIST = [
     className: 'wallTile',
     type: 'WALL',
     titleList: [
-      { id: 1, link: '/', text: '300X600MM' },
-      { id: 2, link: '/', text: '200X600MM' },
-      { id: 3, link: '/', text: '시공사례' },
+      { id: 1, text: '300X600MM' },
+      { id: 2, text: '200X600MM' },
+      { id: 3, text: '시공사례' },
     ],
   },
   {
@@ -110,9 +117,9 @@ const SUB_CATEGORY_LIST = [
     className: 'floorTile',
     type: 'FLOOR',
     titleList: [
-      { id: 1, link: '/', text: '300X300MM' },
-      { id: 2, link: '/', text: '200X400MM' },
-      { id: 3, link: '/', text: '시공사례' },
+      { id: 1, text: '300X300MM' },
+      { id: 2, text: '200X400MM' },
+      { id: 3, text: '시공사례' },
     ],
   },
 ];

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PorcelainA from './PorcelainA/PorcelainA';
 import ConstructionCase from './ConstructionCase/ConstructionCase';
 import './ProductList.scss';
@@ -7,8 +7,6 @@ import './ProductList.scss';
 const ProductList = () => {
   const [rangking, setRangking] = useState([]);
   const [productListBox, setproductListBox] = useState([]);
-
-  const params = useParams();
 
   useEffect(() => {
     fetch('/data/rangkingData.json')
