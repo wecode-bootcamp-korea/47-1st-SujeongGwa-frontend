@@ -223,4 +223,25 @@
       }
     }
   }
+
+  .productListBox.case {
+    .productListRow {
+      li {
+        width: 680px;
+        a {
+          .imgBox {
+            button {
+              display: none;
+            }
+          }
+          p {
+            font-size: 1.4em;
+          }
+          span {
+            display: none;
+          }
+        }
+      }
+    }
+  }
 }

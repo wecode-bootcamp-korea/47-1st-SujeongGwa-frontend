@@ -28,13 +28,22 @@ const ProductList = () => {
   useEffect(() => {
     let categoryData = [];
     let title = '';
-    if (sub_category_id >= 1 && sub_category_id <= 5) {
+    if (
+      (sub_category_id >= 1 && sub_category_id <= 5) ||
+      sub_category_id === String(10)
+    ) {
       categoryData = PORCELAIN_SUB_CATEGORY;
       title = 'PORCELAIN';
-    } else if (sub_category_id >= 6 && sub_category_id <= 7) {
+    } else if (
+      (sub_category_id >= 6 && sub_category_id <= 7) ||
+      sub_category_id === String(11)
+    ) {
       categoryData = WALL_SUB_CATEGORY;
       title = 'WALL';
-    } else if (sub_category_id >= 8 && sub_category_id <= 9) {
+    } else if (
+      (sub_category_id >= 8 && sub_category_id <= 9) ||
+      sub_category_id === String(12)
+    ) {
       categoryData = FLOOR_TILE_SUB_CATEGORY;
       title = 'FLOOR';
     }
@@ -54,6 +63,8 @@ const ProductList = () => {
   const findSurFace = surfaceTypeId => {
     return surfaceType.find(el => el.id === surfaceTypeId).type;
   };
+
+  const includesCase = ['10', '11', '12'].includes(sub_category_id);
 
   return (
     <div className="productList">
@@ -87,18 +98,23 @@ const ProductList = () => {
                 </Link>
               </li>
             ))}
-            <li className="case">
-              <Link to="/">시공사례</Link>
-            </li>
           </ul>
         </div>
       </section>
-      <section className="productListBox">
+      <section className={`productListBox ${includesCase ? 'case' : ''}`}>
         <ul className="productListRow">
           {productListData.length > 0 &&
             productListData.map(product => (
               <li key={product.id}>
-                <Link to={`/goods/name/${product.name}`}>
+                <Link
+                  to={`/goods/name/${product.name}`}
+                  disabled={includesCase}
+                  onClick={e => {
+                    if (includesCase) {
+                      e.preventDefault();
+                    }
+                  }}
+                >
                   <div className="imgBox">
                     <img src={product.image_url} alt={product.name} />
                     <button>+ 상품 보기</button>
@@ -110,7 +126,6 @@ const ProductList = () => {
             ))}
         </ul>
       </section>
-      {/* <ConstructionCase /> */}
     </div>
   );
 };
@@ -123,15 +138,17 @@ const PORCELAIN_SUB_CATEGORY = [
   { id: 3, name: '600X1200X20MM' },
   { id: 4, name: '600X1200X11MM' },
   { id: 5, name: '400X800X10MM' },
-  // { id: 6, name: '시공사례' },
+  { id: 10, name: '시공사례' },
 ];
 
 const WALL_SUB_CATEGORY = [
   { id: 6, name: '300X600MM' },
   { id: 7, name: '200X600MM' },
+  { id: 11, name: '시공사례' },
 ];
 
 const FLOOR_TILE_SUB_CATEGORY = [
   { id: 8, name: '300X300MM' },
   { id: 9, name: '200X400MM' },
+  { id: 12, name: '시공사례' },
 ];
