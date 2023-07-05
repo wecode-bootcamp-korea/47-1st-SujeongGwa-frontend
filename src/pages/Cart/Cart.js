@@ -10,12 +10,12 @@ const Cart = () => {
   const [prices, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    fetch('./data/cartListData.json', {
+    fetch('http://10.58.52.50:3000/carts', {
       method: 'GET',
-      // headers: {
-      //   authorization:
-      //     'Bearer eyNzYwMzIsImV4cCI6MTY4OTI1MzYzMn0.1ntICFfbpT3HlDUODlV-sI-Fo2i_JxNruJwmlUtbF6w',
-      // },JhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM3LCJpYXQiOjE2ODg0
+      headers: {
+        authorization:
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM3LCJpYXQiOjE2ODg0NzYwMzIsImV4cCI6MTY4OTI1MzYzMn0.1ntICFfbpT3HlDUODlV-sI-Fo2i_JxNruJwmlUtbF6w',
+      },
     })
       .then(res => res.json())
       .then(data => {
