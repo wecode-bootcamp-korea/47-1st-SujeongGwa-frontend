@@ -1,13 +1,29 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import './ProductDetail.scss';
 import Count from '../../components/Count/Count';
 
-const ProductDetail = () => {
+const ProductDetail = ({ productId }) => {
   const navigate = useNavigate();
   const [countNumber, setCount] = useState(1);
   const [product, setProduct] = useState([]);
-  const [weight, setWeight] = useState('');
+  const { name } = useParams();
+
+  useEffect(() => {
+    fetch(`http://10.58.52.156:3000/goods/name/${name}`)
+      .then(res => res.json())
+      .then(data => setProduct(data.data));
+  }, [name]);
+
+  let totalPrice = 0;
+  let totalWeight = 0;
+
+  if (product && product.length > 0) {
+    totalWeight = (product[0].weight * countNumber).toLocaleString();
+    totalPrice = (product[0].price * countNumber).toLocaleString();
+  }
+
+  const showAlert = product ? product[0]?.weight * countNumber > 1000 : 1;
 
   const surface_type = ['Matt', 'Hard Matt', 'Soft Matt', 'LappaTo', 'Glossy'];
   const sub_categories = [
@@ -22,85 +38,60 @@ const ProductDetail = () => {
     '200x400x9mm',
   ];
 
-  const findSurfaceType = surfaceTypeId => {
-    const foundTypes = surface_type.filter((v, i) => i + 1 === surfaceTypeId);
-    return foundTypes.length > 0 ? foundTypes[0] : '';
-  };
-
   const findSize = subCategoryId => {
-    const foundSizes = sub_categories.filter((v, i) => i + 1 === subCategoryId);
+    const foundSizes = sub_categories.filter(
+      (size, index) => index + 1 === subCategoryId
+    );
     return foundSizes.length > 0 ? foundSizes[0] : '';
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('./data/product.json');
-        if (response.ok) {
-          const data = await response.json();
-          if (data.product.length > 0) {
-            setProduct(data.product);
-            setWeight(data.product[0].weight);
-          }
-        } else {
-          throw new Error('Error fetching data');
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  const subCategoryId = product[0]?.sub_category_id;
+  const size = findSize(subCategoryId);
 
-    fetchData();
-  }, []);
+  const newSize = size.replace('mm', '').split('x10');
 
-  const totalPrice =
-    product.length > 0 ? product[0].price * countNumber.toLocaleString() : 0;
-  const totalWeight = weight * countNumber.toLocaleString();
-  const showAlert = totalWeight > 1000;
+  const thick = size.split('x')[2];
+
+  const findSurfaceType = surfaceTypeId => {
+    const foundTypes = surface_type.filter(
+      (type, index) => index + 1 === surfaceTypeId
+    );
+    return foundTypes.length > 0 ? foundTypes[0] : '';
+  };
+
+  const surfaceTypeId = product[0]?.surface_type_id;
+  const surfaceType = findSurfaceType(surfaceTypeId);
 
   return (
     <div className="productDetail">
-      {product.map(product => (
-        <div className="productBox" key={product.id}>
+      {product.map(el => (
+        <div className="productBox" key={el.id}>
           <div className="itemImageBox">
             <img
-              src={product.image_url}
+              src={el.image_url}
               alt="productImage"
               className="productImage"
             />
           </div>
           <div className="productDescription">
-            <h1 className="productName">상품이름:{product.name}</h1>
-            <p className="mainDescription">{product.description}</p>
+            <h1 className="productName">{el.name}</h1>
+            <p className="mainDescription">{el.description}</p>
             <ul className="descriptionBox">
               <li className="usingType">
                 <div>TYPE</div>
-                <p className="itemUsingType">
-                  {findSurfaceType(product.surface_type_id)}
-                </p>
-              </li>
-              <li className="usingType">
-                <div>용도</div>
-                <p className="itemUsingType">{product.using}</p>
+                <p className="itemUsingType">{surfaceType}</p>
               </li>
               <li className="usingType">
                 <div>SIZE</div>
-                <p className="itemUsingType">
-                  {findSize(product.sub_category_id)}
-                </p>
+                <p className="itemUsingType">{newSize}</p>
               </li>
               <li className="usingType">
                 <div>THICKNESS</div>
-                <p className="itemUsingType">
-                  {findSize(product.sub_category_id)
-                    .split('x')[2]
-                    .replace('mm', '')
-                    .trim()}
-                </p>
+                <p className="itemUsingType">{thick}</p>
               </li>
               <li className="usingType">
                 <div>WEIGHT</div>
-                <p className="itemUsingType">{product.weight}</p>
+                <p className="itemUsingType">{el.weight} kg</p>
               </li>
             </ul>
             <div className="productCountBox">
@@ -125,7 +116,6 @@ const ProductDetail = () => {
               type="submit"
               className="saveCart"
               onClick={() => {
-                setWeight({ totalWeight });
                 navigate('/cart');
               }}
               disabled={totalWeight > 1000}
@@ -148,7 +138,7 @@ const ProductDetail = () => {
         </div>
         <div className="constructionWay">
           <img
-            src="./images/constructWay1.png"
+            src="/images/constructWay1.png"
             alt="testCase"
             className="testCase"
           />
@@ -157,7 +147,7 @@ const ProductDetail = () => {
       <div className="productExample">
         <div className="constructionWay">
           <img
-            src="./images/constructWay2.png"
+            src="/images/constructWay2.png"
             alt="testCase"
             className="testCase"
           />
