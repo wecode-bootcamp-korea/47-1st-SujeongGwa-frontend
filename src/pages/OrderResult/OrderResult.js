@@ -54,7 +54,7 @@ const OrderResult = () => {
           <div className="orderUserBox">
             <ul className="orderUserInfo">
               <li>{info.userName}</li>
-              <li>{email}</li>
+              <li>{info.}</li>
               <li>POINT(포인트)</li>
               <li>{name}</li>
               <li>{address}</li>
