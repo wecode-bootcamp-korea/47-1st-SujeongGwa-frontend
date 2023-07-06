@@ -79,8 +79,7 @@ const ProductDetail = ({ productId }) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE2ODg2MTE3NjMsImV4cCI6MTY4OTM4OTM2M30.1aqvBmUIxqvS4pYFSIO1fD_b7vc3MB_Rf2Blr_1CIZ8',
+        authorization: token,
       },
       body: JSON.stringify({
         productId: product[0]?.id,
@@ -147,7 +146,6 @@ const ProductDetail = ({ productId }) => {
             <button
               type="submit"
               className="saveCart"
-              // onClick={createCart}
               disabled={totalWeight > 1000}
               onClick={e => checkToken(e, product)}
             >
