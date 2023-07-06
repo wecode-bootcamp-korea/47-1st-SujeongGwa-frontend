@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-// import Count from '../../components/Count/Count';
+import { Link } from 'react-router-dom';
 import './Cart.scss';
 
 const Cart = () => {
@@ -9,14 +8,13 @@ const Cart = () => {
   const [weights, setTotalWeight] = useState(0);
   const [prices, setTotalPrice] = useState(0);
 
-  const navigate = useNavigate();
+  const token = localStorage.getItem('TOKEN');
 
   useEffect(() => {
-    fetch('http://10.58.52.235:3000/carts', {
+    fetch('http://10.58.52.90:3001/carts', {
       method: 'GET',
       headers: {
-        authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI2LCJpYXQiOjE2ODgzODQ5OTAsImV4cCI6MTY4OTE2MjU5MH0.urhgUy5f7jRDn1wZh9IT_QZk-HT9wPNcYGkKe-U2zJc',
+        authorization: token,
       },
     })
       .then(res => res.json())
@@ -27,7 +25,6 @@ const Cart = () => {
           count: item.quantity,
           weight: item.weight * item.quantity,
           price: item.price * item.quantity,
-          // 프로퍼티를 복사한후 count프로퍼티를 추가하고 초기값으로 item.quantity를 가지게 됨
         }));
         setItems(updatedData);
         setTotalWeight(calculateTotalWeight(updatedData));
@@ -37,49 +34,38 @@ const Cart = () => {
 
   const handleOrder = () => {
     const orderItems = items.map(item => ({
-      cartId: item.cartId,
       productId: item.productId,
       quantity: item.count,
     }));
-
-    // PATCH 요청으로 주문 정보 업데이트
-    fetch('http://10.58.52.235:3000/orders', {
+    fetch('http://10.58.52.90:3001/carts', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI2LCJpYXQiOjE2ODgzODQ5OTAsImV4cCI6MTY4OTE2MjU5MH0.urhgUy5f7jRDn1wZh9IT_QZk-HT9wPNcYGkKe-U2zJc',
+        authorization: token,
       },
       body: JSON.stringify({ items: orderItems }),
     })
       .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          // DELETE 요청으로 장바구니에서 삭제
-          fetch('http://10.58.52.235:3000/carts', {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json',
-              authorization:
-                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI2LCJpYXQiOjE2ODgzODQ5OTAsImV4cCI6MTY4OTE2MjU5MH0.urhgUy5f7jRDn1wZh9IT_QZk-HT9wPNcYGkKe-U2zJc',
-            },
-            body: JSON.stringify({ items: orderItems }),
-          })
-            .then(res => res.json())
-            .then(data => {
-              if (data.success) {
-                navigate('/orders');
-              } else {
-                alert('Error deleting items from cart');
-              }
-            })
-            .catch(error => {
-              alert('Network error while deleting items from cart', error);
-            });
-        } else {
-          alert('Error processing order');
-        }
-      })
+      .catch(error => {
+        alert('Network error while processing order', error);
+      });
+  };
+
+  const handleDelete = (productId, cartId) => {
+    const newItems = onRemove(cartId);
+    setItems(newItems);
+    setTotalWeight(calculateTotalWeight(newItems));
+    setTotalPrice(calculateTotalPrice(newItems));
+
+    fetch('http://10.58.52.90:3001/carts', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: token,
+      },
+      body: JSON.stringify({ productId: productId }),
+    })
+      .then(res => res.json())
       .catch(error => {
         alert('Network error while processing order', error);
       });
@@ -147,13 +133,6 @@ const Cart = () => {
     return items.filter(data => data.cartId !== cartId);
   };
 
-  const handleRemove = cartId => {
-    const newItems = onRemove(cartId);
-    setItems(newItems);
-    setTotalWeight(calculateTotalWeight(newItems));
-    setTotalPrice(calculateTotalPrice(newItems));
-  };
-
   const sub_categories = [
     { id: 1, sizes: '600x600x10mm' },
     { id: 2, sizes: '600x600x20mm' },
@@ -211,7 +190,11 @@ const Cart = () => {
                   </li>
                   <li>{Number(el.price)} 원</li>
                   <li className="deletBtn">
-                    <button onClick={() => handleRemove(el.cartId)}>X</button>
+                    <button
+                      onClick={() => handleDelete(el.productId, el.cartId)}
+                    >
+                      X
+                    </button>
                   </li>
                 </ul>
               ))}
