@@ -7,7 +7,7 @@ import Button from '../../../components/Component/Button/Button';
 const SignUpContainer = props => {
   const signUpPost = () => {
     const typeId = signUp === '개인 회원가입' ? 1 : 2;
-    fetch('http://10.58.52.235:3000/users/signup', {
+    fetch('http://10.58.52.156:3000/users/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

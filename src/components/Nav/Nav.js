@@ -100,9 +100,9 @@ const Nav = () => {
 export default Nav;
 
 const MAIN_MENU_LIST = [
-  { id: 1, text: 'PORCELAIN TILE', type: 'PORCELAIN' },
-  { id: 2, text: 'WALL TILE', type: 'WALL' },
-  { id: 3, text: 'FLOOR TILE', type: 'FLOOR' },
+  { id: 1, link: '/', text: 'PORCELAIN TILE', type: 'PORCELAIN' },
+  { id: 2, link: '/', text: 'WALL TILE', type: 'WALL' },
+  { id: 3, link: '/', text: 'FLOOR TILE', type: 'FLOOR' },
 ];
 
 const SUB_CATEGORY_LIST = [
