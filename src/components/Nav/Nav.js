@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Nav.scss';
 
 const Nav = () => {
   const [isHovering, setIsHovering] = useState(true);
   const [selectedMainMenuType, setSelectedMainMenuType] = useState('');
+
+  const navigate = useNavigate();
 
   const handleMouseOver = type => {
     setSelectedMainMenuType(type);
@@ -15,6 +17,24 @@ const Nav = () => {
     setSelectedMainMenuType('');
     setIsHovering(false);
   };
+
+  const token = localStorage.getItem('TOKEN');
+
+  const onLogoutSubmit = () => {
+    localStorage.removeItem('TOKEN');
+    navigate('/');
+  };
+
+  const checkTokenAndRedirect = (e, path) => {
+    if (!token) {
+      e.preventDefault();
+      navigate('/users/signin');
+      alert('로그인을 먼저 진행해 주세요.');
+    } else {
+      navigate(path);
+    }
+  };
+
   return (
     <div className="nav scroll">
       <div className="cateroryName">
@@ -37,11 +57,20 @@ const Nav = () => {
           ))}
         </ul>
         <ul className="utilMenu">
-          {UTIL_MENU_LIST.map(info => (
-            <li className="menulist" key={info.id}>
-              <Link to={info.link}>{info.text}</Link>
+          {token ? (
+            <li className="menulist" onClick={onLogoutSubmit}>
+              <Link to="/">LOGOUT</Link>
             </li>
-          ))}
+          ) : (
+            <li className="menulist">
+              <Link to="/users/signin">LOGIN</Link>
+            </li>
+          )}
+          <li className="menulist">
+            <Link to="/carts" onClick={e => checkTokenAndRedirect(e, '/carts')}>
+              CART
+            </Link>
+          </li>
         </ul>
       </div>
       {selectedMainMenuType && (
@@ -74,11 +103,6 @@ const MAIN_MENU_LIST = [
   { id: 1, text: 'PORCELAIN TILE', type: 'PORCELAIN' },
   { id: 2, text: 'WALL TILE', type: 'WALL' },
   { id: 3, text: 'FLOOR TILE', type: 'FLOOR' },
-];
-
-const UTIL_MENU_LIST = [
-  { id: 1, link: '/users/login', text: 'LOGIN' },
-  { id: 2, link: '/cart', text: 'CART' },
 ];
 
 const SUB_CATEGORY_LIST = [
