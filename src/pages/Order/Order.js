@@ -1,21 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './Order.scss';
-import { useNavigate, useLocation } from 'react-router-dom';
 import OrderResult from '../OrderResult/OrderResult';
 
 const Order = () => {
   const [items, setItems] = useState([]);
-  const navigate = useNavigate();
-  // const location = useLocation();
-  const token = localStorage.getItem('TOKEN');
-  //const { productInfo } = location.state;
-  // useEffect(() => {
-  //   console.log(location);
-  // }, [location]);
   const [modal, setModal] = useState(false);
-  const showModal = () => {
-    setModal(true);
-  };
+  const [inputValues, setInputValues] = useState({});
+  const token = localStorage.getItem('TOKEN');
 
   const surface_type = ['Matt', 'Hard Matt', 'Soft Matt', 'LappaTo', 'Glossy'];
   const sub_categories = [
@@ -63,7 +54,6 @@ const Order = () => {
     return items?.reduce((acc, cur) => acc + Number(cur.price), 0);
   };
 
-  const [inputValues, setInputValues] = useState({});
   const handleInputValue = e => {
     const { name, value } = e.target;
     setInputValues(prevValues => ({
@@ -72,7 +62,6 @@ const Order = () => {
     }));
   };
 
-  //order에 POST : 200.OK
   const postProduct = () => {
     fetch(`http://10.58.52.235:3000/orders`, {
       method: 'POST',
@@ -83,14 +72,13 @@ const Order = () => {
       body: JSON.stringify({
         address: inputValues.address,
       }),
-    })
-      .then(res => {
-        if (res.status === 200) {
-        } else if (res.message === 'SUCCESS_CREATE_OREDER') {
-          alert('결제에 실패하였습니다.');
-        }
-      })
-      .then(data => {});
+    }).then(res => {
+      if (res.status === 200) {
+        setModal(true);
+      } else if (res.message === 'SUCCESS_CREATE_OREDER') {
+        alert('결제에 실패하였습니다.');
+      }
+    });
   };
 
   return (
@@ -166,7 +154,6 @@ const Order = () => {
               className="payment"
               onClick={() => {
                 postProduct();
-                showModal();
               }}
             >
               결제하기
@@ -176,7 +163,14 @@ const Order = () => {
       </div>
       {modal && (
         <div className="orederResultBox">
-          <OrderResult className="orederResult" setModal={setModal} />
+          <OrderResult
+            className="orederResult"
+            setModal={setModal}
+            items={items}
+            totalWeight={totalWeight(items)}
+            totalPrice={totalPrice(items)}
+            address={inputValues.address}
+          />
         </div>
       )}
     </div>
