@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Nav.scss';
 
 const Nav = () => {
+  const [isHovering, setIsHovering] = useState(true);
+  const [selectedMainMenuType, setSelectedMainMenuType] = useState('');
+
+  const handleMouseOver = type => {
+    setSelectedMainMenuType(type);
+    setIsHovering(true);
+  };
+
+  const handleMouseOut = () => {
+    setSelectedMainMenuType('');
+    setIsHovering(false);
+  };
   return (
     <div className="nav scroll">
       <div className="cateroryName">
@@ -12,8 +24,14 @@ const Nav = () => {
               <span>SJG</span>
             </Link>
           </li>
+
           {MAIN_MENU_LIST.map(info => (
-            <li className="menulist" key={`menu-list-${info.id}`}>
+            <li
+              className="menulist"
+              key={`menu-list-${info.id}`}
+              onMouseOver={() => handleMouseOver(info.type)}
+              onMouseOut={handleMouseOut}
+            >
               <Link to={info.link}>{info.text}</Link>
             </li>
           ))}
@@ -26,31 +44,26 @@ const Nav = () => {
           ))}
         </ul>
       </div>
-
-      {/* 서브카테고리 구현예정입니다. */}
-      {/* <div className="subCateroryName">
-        <ul className="porcelainTile on">
-          {PORCELAIN_TILE_LIST.map(info => (
-            <li className="menulist" key={info.id}>
-              <Link to={info.link}>{info.text}</Link>
-            </li>
+      {selectedMainMenuType && (
+        <div className="subCateroryName">
+          {SUB_CATEGORY_LIST.map(info => (
+            <ul
+              className={`${info.className} ${
+                isHovering && selectedMainMenuType === info.type ? 'on' : ''
+              }`}
+              key={info.id}
+              onMouseOver={() => handleMouseOver(info.type)}
+              onMouseOut={handleMouseOut}
+            >
+              {info.titleList.map(info => (
+                <li className="menulist" key={info.id}>
+                  <Link to={info.link}>{info.text}</Link>
+                </li>
+              ))}
+            </ul>
           ))}
-        </ul>
-        <ul className="wallTile">
-          {WALL_TILE_LIST.map(info => (
-            <li className="menulist" key={info.id}>
-              <Link to={info.link}>{info.text}</Link>
-            </li>
-          ))}
-        </ul>
-        <ul className="floorTile">
-          {FLOOR_TILE_LIST.map(info => (
-            <li className="menulist" key={info.id}>
-              <Link to={info.link}>{info.text}</Link>
-            </li>
-          ))}
-        </ul>
-      </div> */}
+        </div>
+      )}
     </div>
   );
 };
@@ -58,9 +71,9 @@ const Nav = () => {
 export default Nav;
 
 const MAIN_MENU_LIST = [
-  { id: 1, link: '/', text: 'PORCELAIN TILE' },
-  { id: 2, link: '/', text: 'WALL TILE' },
-  { id: 3, link: '/', text: 'FLOOR TILE' },
+  { id: 1, link: '/', text: 'PORCELAIN TILE', type: 'PORCELAIN' },
+  { id: 2, link: '/', text: 'WALL TILE', type: 'WALL' },
+  { id: 3, link: '/', text: 'FLOOR TILE', type: 'FLOOR' },
 ];
 
 const UTIL_MENU_LIST = [
@@ -68,20 +81,38 @@ const UTIL_MENU_LIST = [
   { id: 2, link: '/cart', text: 'CART' },
 ];
 
-// const PORCELAIN_TILE_LIST = [
-//   { id: 1, link: '/', text: '600X600X10MM' },
-//   { id: 2, link: '/', text: '600X1200X20MM' },
-//   { id: 3, link: '/', text: '600X1200X11MM' },
-//   { id: 4, link: '/', text: '600X600X20MM' },
-//   { id: 5, link: '/', text: '400X800X11MM' },
-// ];
-
-// const WALL_TILE_LIST = [
-//   { id: 1, link: '/', text: '300X600MM' },
-//   { id: 2, link: '/', text: '200X600MM' },
-// ];
-
-// const FLOOR_TILE_LIST = [
-//   { id: 1, link: '/', text: '300X300MM' },
-//   { id: 2, link: '/', text: '200X400MM' },
-// ];
+const SUB_CATEGORY_LIST = [
+  {
+    id: 1,
+    className: 'porcelainTile',
+    type: 'PORCELAIN',
+    titleList: [
+      { id: 1, link: '/', text: '600X600X10MM' },
+      { id: 2, link: '/', text: '600X1200X20MM' },
+      { id: 3, link: '/', text: '600X1200X11MM' },
+      { id: 4, link: '/', text: '600X600X20MM' },
+      { id: 5, link: '/', text: '400X800X11MM' },
+      { id: 6, link: '/', text: '시공사례' },
+    ],
+  },
+  {
+    id: 2,
+    className: 'wallTile',
+    type: 'WALL',
+    titleList: [
+      { id: 1, link: '/', text: '300X600MM' },
+      { id: 2, link: '/', text: '200X600MM' },
+      { id: 3, link: '/', text: '시공사례' },
+    ],
+  },
+  {
+    id: 3,
+    className: 'floorTile',
+    type: 'FLOOR',
+    titleList: [
+      { id: 1, link: '/', text: '300X300MM' },
+      { id: 2, link: '/', text: '200X400MM' },
+      { id: 3, link: '/', text: '시공사례' },
+    ],
+  },
+];
