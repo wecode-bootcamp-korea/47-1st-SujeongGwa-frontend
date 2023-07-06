@@ -1,19 +1,23 @@
-import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './OrderResult.scss';
 
-const OrderResult = () => {
+const OrderResult = ({ setModal, items, totalWeight, totalPrice, address }) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const info = location.state;
+
+  const handleGoMain = () => {
+    navigate('/');
+  };
 
   const handleGoMain = () => {
     navigate('/');
   };
   return (
     <div className="orderResult">
+      <button onClick={() => setModal(false)} className="closeBtn">
+        ✕
+      </button>
       <div className="orderText">
-        <h1>감사합니다, userName님</h1>
+        <h1>감사합니다, {items[0].name} 님</h1>
         <p className="thanksText">
           주문이 완료되었습니다. <br />
           추가 문의 사항이 있으시면 연락 주시기 바랍니다.
@@ -21,7 +25,7 @@ const OrderResult = () => {
       </div>
       <div className="orderNumberBox">
         <li>주문번호</li>
-        <li>orderNumber</li>
+        <li>ljhjh546-dfa1279</li>
       </div>
       <div className="orderInfoBox">
         <ul className="orderItemBox">
@@ -29,18 +33,24 @@ const OrderResult = () => {
             <li key={el.id}>{el.name}</li>
           ))}
         </ul>
-        <div className="orderItemBox">
-          <div className="orderItemBox2">
-            <ul className="column">
-              <li>productname</li>
-              <li>producttype</li>
-              <li>productquantity 개</li>
-            </ul>
-          </div>
-        </div>
+        {items.length > 0 &&
+          items.map((item, idx) => {
+            return (
+              <div className="orderItemBox" key={idx}>
+                <div className="orderItemBox2">
+                  <ul className="column">
+                    <li>{item.tileName}</li>
+                    <li>바닥재</li>
+                    <li>{item.quantity}개</li>
+                  </ul>
+                </div>
+              </div>
+            );
+          })}
+
         <div className="orderNumberBox2">
-          <li> 총 무게 : weight Kg</li>
-          <li> 총 가격 : price 원</li>
+          <li> 총 무게 : {totalWeight}Kg</li>
+          <li> 총 가격 : {totalPrice}원</li>
         </div>
       </div>
       <div className="orderUserInfoBox">
@@ -53,11 +63,10 @@ const OrderResult = () => {
         </div>
         <div className="orderUserBox">
           <ul className="orderUserInfo">
-            <li>userName</li>
-            <li>email</li>
+            <li>{items[0].name}</li>
+            <li>{items[0].email}</li>
             <li>POINT(포인트)</li>
-            <li>userName</li>
-            <li>address</li>
+            <li>{address}</li>
             <li>경비실에 맡겨주세요</li>
           </ul>
         </div>
