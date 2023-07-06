@@ -30,7 +30,7 @@ const Router = () => {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/*" element={<NotFound />} />
-        <Route path="/users/login" element={<Login />} />
+        <Route path="/users/signin" element={<Login />} />
       </Routes>
       <Footer />
     </BrowserRouter>
