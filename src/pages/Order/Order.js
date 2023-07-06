@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './Order.scss';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Order = () => {
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
+  const token = localStorage.getItem('TOKEN');
+  //const { productInfo } = location.state;
+  useEffect(() => {
+    console.log(location);
+  }, [location]);
 
   const surface_type = ['Matt', 'Hard Matt', 'Soft Matt', 'LappaTo', 'Glossy'];
   const sub_categories = [
@@ -31,12 +37,11 @@ const Order = () => {
   };
 
   useEffect(() => {
-    fetch(`http://10.58.52.235:3000/carts`, {
+    fetch(`http://10.58.52.156:3000/carts`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI2LCJpYXQiOjE2ODgzODQ5OTAsImV4cCI6MTY4OTE2MjU5MH0.urhgUy5f7jRDn1wZh9IT_QZk-HT9wPNcYGkKe-U2zJc',
+        authorization: token,
       },
     })
       .then(res => res.json())
@@ -64,21 +69,16 @@ const Order = () => {
 
   //order에 POST : 200.OK
   const postProduct = () => {
-    fetch(
-      `http://10.58.52.235:3000/orders`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          authorization:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI2LCJpYXQiOjE2ODgzODQ5OTAsImV4cCI6MTY4OTE2MjU5MH0.urhgUy5f7jRDn1wZh9IT_QZk-HT9wPNcYGkKe-U2zJc',
-        },
-        body: JSON.stringify({
-          address: inputValues.address,
-        }),
+    fetch(`http://10.58.52.156:3000/orders`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: token,
       },
-      []
-    )
+      body: JSON.stringify({
+        address: inputValues.address,
+      }),
+    })
       .then(res => {
         if (res.status === 200) {
           navigate(

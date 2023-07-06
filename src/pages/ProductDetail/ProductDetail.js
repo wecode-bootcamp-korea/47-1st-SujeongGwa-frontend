@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import './ProductDetail.scss';
 import Count from '../../components/Count/Count';
@@ -7,56 +7,122 @@ const ProductDetail = ({ productId }) => {
   const navigate = useNavigate();
   const [countNumber, setCount] = useState(1);
   const [product, setProduct] = useState([]);
-  const [weight, setWeight] = useState(product.weight);
+  const { name } = useParams();
 
   useEffect(() => {
-    fetch('./data/product.json')
+    fetch(`http://10.58.52.156:3000/goods/name/${name}`)
       .then(res => res.json())
-      .then(data => {
-        setProduct(data.product);
-        setWeight(data.product[0].weight);
-      });
-  }, []);
+      .then(data => setProduct(data.data));
+  }, [name]);
 
-  const totalPrice =
-    product.length > 0 ? product[0].price * countNumber.toLocaleString() : 0;
-  const totalWeight = weight * countNumber.toLocaleString();
-  const showAlert = totalWeight > 1000;
+  let totalPrice = 0;
+  let totalWeight = 0;
 
+  if (product && product.length > 0) {
+    totalWeight = (product[0].weight * countNumber).toLocaleString();
+    totalPrice = (product[0].price * countNumber).toLocaleString();
+  }
+
+  const showAlert = product ? product[0]?.weight * countNumber > 1000 : 1;
+
+  const surface_type = ['Matt', 'Hard Matt', 'Soft Matt', 'LappaTo', 'Glossy'];
+  const sub_categories = [
+    '600x600x10mm',
+    '600x600x20mm',
+    '600x1200x11mm',
+    '600x1200x20mm',
+    '400x800x11mm',
+    '300x600x9mm',
+    '200x600x9mm',
+    '300x300x9mm',
+    '200x400x9mm',
+  ];
+
+  const findSize = subCategoryId => {
+    const foundSizes = sub_categories.filter(
+      (size, index) => index + 1 === subCategoryId
+    );
+    return foundSizes.length > 0 ? foundSizes[0] : '';
+  };
+
+  const subCategoryId = product[0]?.sub_category_id;
+  const size = findSize(subCategoryId);
+
+  const newSize = size.replace('mm', '').split('x10');
+
+  const thick = size.split('x')[2];
+
+  const findSurfaceType = surfaceTypeId => {
+    const foundTypes = surface_type.filter(
+      (type, index) => index + 1 === surfaceTypeId
+    );
+    return foundTypes.length > 0 ? foundTypes[0] : '';
+  };
+
+  const surfaceTypeId = product[0]?.surface_type_id;
+  const surfaceType = findSurfaceType(surfaceTypeId);
+
+  const token = localStorage.getItem('TOKEN');
+
+  const checkToken = (e, product) => {
+    if (!token) {
+      e.preventDefault();
+      navigate('/users/signin');
+      alert('로그인을 먼저 진행해 주세요.');
+    } else {
+      createCart(product, token);
+    }
+  };
+
+  const createCart = () => {
+    fetch('http://10.58.52.156:3000/carts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: token,
+      },
+      body: JSON.stringify({
+        productId: product[0]?.id,
+        quantity: countNumber,
+      }),
+    }).then(res => {
+      if (res.status === 200) {
+        navigate('/orders');
+      } else if (res.status === 400) {
+        navigate('/users/signin');
+      }
+    });
+  };
   return (
     <div className="productDetail">
-      <div className="productBox">
-        <div className="itemImageBox">
-          <img
-            src="./images/6.jpg"
-            alt="productImage"
-            className="productImage"
-          />
-        </div>
-        {product.map(product => (
-          <div className="productDescription" key={product.id}>
-            <h1 className="productName">상품이름:{product.name}</h1>
-            <p className="mainDescription">{product.description}</p>
+      {product.map(el => (
+        <div className="productBox" key={el.id}>
+          <div className="itemImageBox">
+            <img
+              src={el.image_url}
+              alt="productImage"
+              className="productImage"
+            />
+          </div>
+          <div className="productDescription">
+            <h1 className="productName">{el.name}</h1>
+            <p className="mainDescription">{el.description}</p>
             <ul className="descriptionBox">
               <li className="usingType">
                 <div>TYPE</div>
-                <p className="itemUsingType">{product.type}</p>
-              </li>
-              <li className="usingType">
-                <div>용도</div>
-                <p className="itemUsingType">{product.using}</p>
+                <p className="itemUsingType">{surfaceType}</p>
               </li>
               <li className="usingType">
                 <div>SIZE</div>
-                <p className="itemUsingType">{product.size}</p>
+                <p className="itemUsingType">{newSize}</p>
               </li>
               <li className="usingType">
                 <div>THICKNESS</div>
-                <p className="itemUsingType">{product.thickness}</p>
+                <p className="itemUsingType">{thick}</p>
               </li>
               <li className="usingType">
                 <div>WEIGHT</div>
-                <p className="itemUsingType">{product.weight}</p>
+                <p className="itemUsingType">{el.weight} kg</p>
               </li>
             </ul>
             <div className="productCountBox">
@@ -80,17 +146,14 @@ const ProductDetail = ({ productId }) => {
             <button
               type="submit"
               className="saveCart"
-              onClick={() => {
-                setWeight({ totalWeight });
-                navigate('/cart');
-              }}
               disabled={totalWeight > 1000}
+              onClick={e => checkToken(e, product)}
             >
               장바구니에 담기
             </button>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
       <div className="productExample">
         <div className="constructionText">
           <h1 className="constructionTitle">SJG TILE 시공 방법</h1>
@@ -104,7 +167,7 @@ const ProductDetail = ({ productId }) => {
         </div>
         <div className="constructionWay">
           <img
-            src="./images/constructWay1.png"
+            src="/images/constructWay1.png"
             alt="testCase"
             className="testCase"
           />
@@ -113,7 +176,7 @@ const ProductDetail = ({ productId }) => {
       <div className="productExample">
         <div className="constructionWay">
           <img
-            src="./images/constructWay2.png"
+            src="/images/constructWay2.png"
             alt="testCase"
             className="testCase"
           />
