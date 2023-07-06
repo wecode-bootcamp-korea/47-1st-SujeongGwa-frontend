@@ -28,6 +28,17 @@ const Nav = () => {
     navigate('/');
   };
 
+  const checkTokenAndRedirect = (e, path) => {
+    const token = localStorage.getItem('TOKEN');
+    if (token === null || token === undefined) {
+      e.preventDefault();
+      navigate('/users/signin');
+      alert('로그인을 먼저 진행해 주세요.');
+    } else {
+      navigate(path);
+    }
+  };
+
   return (
     <div className="nav scroll">
       <div className="cateroryName">
@@ -60,7 +71,9 @@ const Nav = () => {
             </li>
           )}
           <li className="menulist">
-            <Link to="/carts">CART</Link>
+            <Link to="/carts" onClick={e => checkTokenAndRedirect(e, '/carts')}>
+              CART
+            </Link>
           </li>
         </ul>
       </div>
