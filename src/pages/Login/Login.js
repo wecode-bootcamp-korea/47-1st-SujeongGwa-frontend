@@ -46,7 +46,7 @@ const Login = () => {
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({
-        type_id: typeId,
+        typeId: typeId,
         account: inputValues.account,
         email: inputValues.email,
         password: inputValues.password,
@@ -59,8 +59,8 @@ const Login = () => {
         alert('입력한 정보를 다시 확인해 주세요.');
       })
       .then(data => {
-        if (data && data.message === 'LOGIN_SUCCESS') {
-          localStorage.setItem('TOKEN', data.token);
+        if (data && data.message === 'SIGNIN_SUCCESS') {
+          localStorage.setItem('TOKEN', data.accessToken);
           alert('로그인이 완료되었습니다.');
           navigate('/');
         } else if (data && data.message === 'INVALID_USER_REQUEST') {
