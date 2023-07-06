@@ -18,10 +18,7 @@ const Nav = () => {
     setIsHovering(false);
   };
 
-  const onLoginSubmit = () => {
-    const token = localStorage.getItem('TOKEN');
-    return token !== null && token !== undefined;
-  };
+  const token = localStorage.getItem('TOKEN');
 
   const onLogoutSubmit = () => {
     localStorage.removeItem('TOKEN');
@@ -29,8 +26,7 @@ const Nav = () => {
   };
 
   const checkTokenAndRedirect = (e, path) => {
-    const token = localStorage.getItem('TOKEN');
-    if (token === null || token === undefined) {
+    if (!token) {
       e.preventDefault();
       navigate('/users/signin');
       alert('로그인을 먼저 진행해 주세요.');
@@ -61,7 +57,7 @@ const Nav = () => {
           ))}
         </ul>
         <ul className="utilMenu">
-          {onLoginSubmit() ? (
+          {token ? (
             <li className="menulist" onClick={onLogoutSubmit}>
               <Link to="/">LOGOUT</Link>
             </li>
