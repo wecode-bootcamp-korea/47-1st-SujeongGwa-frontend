@@ -62,30 +62,39 @@ const ProductDetail = ({ productId }) => {
   const surfaceTypeId = product[0]?.surface_type_id;
   const surfaceType = findSurfaceType(surfaceTypeId);
 
-  fetch('http://10.58.52.50:3000/carts', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      authorization:
-        'Barear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUxLCJpYXQiOjE2ODg1NDcwNjIsImV4cCI6MTY4OTMyNDY2Mn0.WVFv6HOg7thszXAoVo4JyQV6xiQtrU5PV96Lx1Gw1eE',
-      //token,
-    },
-    body: JSON.stringify({
-      productId: product.id,
-      quantity: product.countNumber,
-    }),
-  })
-    .then(response => {
-      if (response.ok === true) {
-        return response.json();
-      }
-    })
-    .then(data => {
-      // if (data.message === 'SUCCESS_CREATE_CART') {
-      // localStorage.getItem(token);
-      // }
-    }); //},[token])
+  const checkToken = (e, product) => {
+    const token = localStorage.getItem('TOKEN');
+    if (token === null || token === undefined) {
+      e.preventDefault();
+      navigate('/users/signin');
+      alert('로그인을 먼저 진행해 주세요.');
+    } else {
+      createCart(product, token);
+    }
+  };
 
+  const createCart = () => {
+    fetch('http://10.58.52.156:3000/carts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1LCJpYXQiOjE2ODg2MTE3NjMsImV4cCI6MTY4OTM4OTM2M30.1aqvBmUIxqvS4pYFSIO1fD_b7vc3MB_Rf2Blr_1CIZ8',
+      },
+      body: JSON.stringify({
+        productId: product[0]?.id,
+        quantity: countNumber,
+      }),
+    })
+      .then(res => {
+        if (res.status === 200) {
+          navigate('/orders');
+        } else if (res.status === 400) {
+          navigate('/users/signin');
+        }
+      })
+      .then(data => {});
+  };
   return (
     <div className="productDetail">
       {product.map(el => (
@@ -139,10 +148,9 @@ const ProductDetail = ({ productId }) => {
             <button
               type="submit"
               className="saveCart"
-              onClick={() => {
-                navigate('/cart');
-              }}
+              // onClick={createCart}
               disabled={totalWeight > 1000}
+              onClick={e => checkToken(e, product)}
             >
               장바구니에 담기
             </button>

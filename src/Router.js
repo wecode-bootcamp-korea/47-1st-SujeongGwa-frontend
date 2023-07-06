@@ -20,14 +20,14 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/productList" element={<ProductList />} />
-        <Route path="/order" element={<Order />} />
+        <Route path="/orders" element={<Order />} />
         <Route path="/goods/name/:name" element={<ProductDetail />} />
         <Route path="/orderResult" element={<OrderResult />} />
         <Route path="/users/signup" element={<SignUp />} />
         <Route path="/mypage" element={<MyPage />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/carts" element={<Cart />} />
         <Route path="/*" element={<NotFound />} />
-        <Route path="/users/login" element={<Login />} />
+        <Route path="/users/signin" element={<Login />} />
       </Routes>
       <Footer />
     </BrowserRouter>
