@@ -62,9 +62,10 @@ const ProductDetail = ({ productId }) => {
   const surfaceTypeId = product[0]?.surface_type_id;
   const surfaceType = findSurfaceType(surfaceTypeId);
 
+  const token = localStorage.getItem('TOKEN');
+
   const checkToken = (e, product) => {
-    const token = localStorage.getItem('TOKEN');
-    if (token === null || token === undefined) {
+    if (!token) {
       e.preventDefault();
       navigate('/users/signin');
       alert('로그인을 먼저 진행해 주세요.');
@@ -85,15 +86,13 @@ const ProductDetail = ({ productId }) => {
         productId: product[0]?.id,
         quantity: countNumber,
       }),
-    })
-      .then(res => {
-        if (res.status === 200) {
-          navigate('/orders');
-        } else if (res.status === 400) {
-          navigate('/users/signin');
-        }
-      })
-      .then(data => {});
+    }).then(res => {
+      if (res.status === 200) {
+        navigate('/orders');
+      } else if (res.status === 400) {
+        navigate('/users/signin');
+      }
+    });
   };
   return (
     <div className="productDetail">
