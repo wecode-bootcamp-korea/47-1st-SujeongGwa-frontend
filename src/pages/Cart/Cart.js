@@ -12,11 +12,11 @@ const Cart = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://10.58.52.50:3000/carts', {
+    fetch('http://10.58.52.235:3000/carts', {
       method: 'GET',
       headers: {
         authorization:
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM5LCJpYXQiOjE2ODg1MzUyMDIsImV4cCI6MTY4OTMxMjgwMn0.yLn9Nk8pTGl2oowowS97SSjwI0dAm7YZrdwEMqRqgSY',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI2LCJpYXQiOjE2ODgzODQ5OTAsImV4cCI6MTY4OTE2MjU5MH0.urhgUy5f7jRDn1wZh9IT_QZk-HT9wPNcYGkKe-U2zJc',
       },
     })
       .then(res => res.json())
@@ -34,6 +34,56 @@ const Cart = () => {
         setTotalPrice(calculateTotalPrice(updatedData));
       });
   }, []);
+
+  const handleOrder = () => {
+    const orderItems = items.map(item => ({
+      cartId: item.cartId,
+      productId: item.productId,
+      quantity: item.count,
+    }));
+
+    // PATCH 요청으로 주문 정보 업데이트
+    fetch('http://10.58.52.235:3000/orders', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI2LCJpYXQiOjE2ODgzODQ5OTAsImV4cCI6MTY4OTE2MjU5MH0.urhgUy5f7jRDn1wZh9IT_QZk-HT9wPNcYGkKe-U2zJc',
+      },
+      body: JSON.stringify({ items: orderItems }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          // DELETE 요청으로 장바구니에서 삭제
+          fetch('http://10.58.52.235:3000/carts', {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              authorization:
+                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI2LCJpYXQiOjE2ODgzODQ5OTAsImV4cCI6MTY4OTE2MjU5MH0.urhgUy5f7jRDn1wZh9IT_QZk-HT9wPNcYGkKe-U2zJc',
+            },
+            body: JSON.stringify({ items: orderItems }),
+          })
+            .then(res => res.json())
+            .then(data => {
+              if (data.success) {
+                navigate('/orders');
+              } else {
+                alert('Error deleting items from cart');
+              }
+            })
+            .catch(error => {
+              alert('Network error while deleting items from cart', error);
+            });
+        } else {
+          alert('Error processing order');
+        }
+      })
+      .catch(error => {
+        alert('Network error while processing order', error);
+      });
+  };
 
   const decrease = (items, cartId) => {
     return items.map(item =>
@@ -202,11 +252,11 @@ const Cart = () => {
               </button>
             </li>
             <li>
-              <Link to="/order">
+              <Link to="/orders">
                 <button
                   className="blackBtn"
                   disabled={showAlert || items.length === 0}
-                  onClick={() => navigate('/order')}
+                  onClick={handleOrder}
                 >
                   {/* <button
                   className="blackBtn"
