@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Order.scss';
 import { useNavigate, useLocation } from 'react-router-dom';
+import OrderResult from '../OrderResult/OrderResult';
 
 const Order = () => {
   const [items, setItems] = useState([]);
@@ -8,6 +9,7 @@ const Order = () => {
   const location = useLocation();
   const token = localStorage.getItem('TOKEN');
   //const { productInfo } = location.state;
+
   useEffect(() => {
     console.log(location);
   }, [location]);
@@ -37,7 +39,7 @@ const Order = () => {
   };
 
   useEffect(() => {
-    fetch(`http://10.58.52.156:3000/carts`, {
+    fetch(`http://10.58.52.235:3000/carts`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -69,7 +71,7 @@ const Order = () => {
 
   //order에 POST : 200.OK
   const postProduct = () => {
-    fetch(`http://10.58.52.156:3000/orders`, {
+    fetch(`http://10.58.52.235:3000/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -81,24 +83,25 @@ const Order = () => {
     })
       .then(res => {
         if (res.status === 200) {
-          navigate(
-            '/orderResult'
-            // {
-            //   state: {
-            //     userName: items[0].name,
-            //     orderNumber: items[0].order_number,
-            //     price: items.total_price,
-            //     weight: items.total_weight,
-            //     address: items[0].address,
-            //     email: items.email,
-            //     product: [
-            //       {
-            //         name: items.product.name,
-            //         count: items.product.quantity,
-            //         type: items.product.surfaceTypeId,
-            //       },
-            //     ],
-          );
+          // navigate(
+          //   '/orderResult'
+          //   // {
+          //   //   state: {
+          //   //     userName: items[0].name,
+          //   //     orderNumber: items[0].order_number,
+          //   //     price: items.total_price,
+          //   //     weight: items.total_weight,
+          //   //     address: items[0].address,
+          //   //     email: items.email,
+          //   //     product: [
+          //   //       {
+          //   //         name: items.product.name,
+          //   //         count: items.product.quantity,
+          //   //         type: items.product.surfaceTypeId,
+          //   //       },
+          //   //     ],
+          // );
+          <OrderResult />;
         } else if (res.message === 'SUCCESS_CREATE_OREDER') {
           alert('결제에 실패하였습니다.');
         }
