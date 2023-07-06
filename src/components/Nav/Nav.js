@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Nav.scss';
 
 const Nav = () => {
   const [isHovering, setIsHovering] = useState(true);
   const [selectedMainMenuType, setSelectedMainMenuType] = useState('');
+
+  const navigate = useNavigate();
 
   const handleMouseOver = type => {
     setSelectedMainMenuType(type);
@@ -15,6 +17,17 @@ const Nav = () => {
     setSelectedMainMenuType('');
     setIsHovering(false);
   };
+
+  const onLoginSubmit = () => {
+    const token = localStorage.getItem('TOKEN');
+    return token !== null && token !== undefined;
+  };
+
+  const onLogoutSubmit = () => {
+    localStorage.removeItem('TOKEN');
+    navigate('/');
+  };
+
   return (
     <div className="nav scroll">
       <div className="cateroryName">
@@ -37,11 +50,18 @@ const Nav = () => {
           ))}
         </ul>
         <ul className="utilMenu">
-          {UTIL_MENU_LIST.map(info => (
-            <li className="menulist" key={info.id}>
-              <Link to={info.link}>{info.text}</Link>
+          {onLoginSubmit() ? (
+            <li className="menulist" onClick={onLogoutSubmit}>
+              <Link to="/">LOGOUT</Link>
             </li>
-          ))}
+          ) : (
+            <li className="menulist">
+              <Link to="/users/signin">LOGIN</Link>
+            </li>
+          )}
+          <li className="menulist">
+            <Link to="/carts">CART</Link>
+          </li>
         </ul>
       </div>
       {selectedMainMenuType && (
@@ -74,11 +94,6 @@ const MAIN_MENU_LIST = [
   { id: 1, link: '/', text: 'PORCELAIN TILE', type: 'PORCELAIN' },
   { id: 2, link: '/', text: 'WALL TILE', type: 'WALL' },
   { id: 3, link: '/', text: 'FLOOR TILE', type: 'FLOOR' },
-];
-
-const UTIL_MENU_LIST = [
-  { id: 1, link: '/users/login', text: 'LOGIN' },
-  { id: 2, link: '/cart', text: 'CART' },
 ];
 
 const SUB_CATEGORY_LIST = [
