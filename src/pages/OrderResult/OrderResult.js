@@ -54,10 +54,10 @@ const OrderResult = () => {
           <div className="orderUserBox">
             <ul className="orderUserInfo">
               <li>{info.userName}</li>
-              <li>{info.}</li>
+              <li>{info.email}</li>
               <li>POINT(포인트)</li>
-              <li>{name}</li>
-              <li>{address}</li>
+              <li>{info.userName}</li>
+              <li>{info.address}</li>
               <li>경비실에 맡겨주세요</li>
             </ul>
           </div>
@@ -77,9 +77,6 @@ const ORDER_CATEGORY = [
   { id: 1, name: '이름' },
   { id: 2, name: '타입' },
   { id: 3, name: '구매수량' },
-  // { id: 4, name: 'KG' },
-  // { id: 5, name: '수량' },
-  // { id: 6, name: '금액' },
 ];
 
 const ORDERUSER_CATEGORY = [
