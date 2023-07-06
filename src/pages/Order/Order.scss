@@ -147,4 +147,27 @@
       }
     }
   }
+
+  .orederResultBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+
+    .orderResult {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60em;
+      height: 90vh;
+      padding: 4em 4em;
+      background: #fffef2;
+      border: 5px solid #333;
+      transform: translate3d(-50%, -50%, 0);
+      overflow-y: scroll;
+    }
+  }
 }

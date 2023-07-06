@@ -86,24 +86,6 @@ const Order = () => {
     })
       .then(res => {
         if (res.status === 200) {
-          // navigate(
-          //   '/orderResult'
-          // {
-          //   state: {
-          //     userName: items[0].name,
-          //     orderNumber: items[0].order_number,
-          //     price: items.total_price,
-          //     weight: items.total_weight,
-          //     address: items[0].address,
-          //     email: items.email,
-          //     product: [
-          //       {
-          //         name: items.product.name,
-          //         count: items.product.quantity,
-          //         type: items.product.surfaceTypeId,
-          //       },
-          //   //     ],
-          // );
         } else if (res.message === 'SUCCESS_CREATE_OREDER') {
           alert('결제에 실패하였습니다.');
         }
@@ -192,7 +174,11 @@ const Order = () => {
           </div>
         </div>
       </div>
-      {modal && <OrderResult />}
+      {modal && (
+        <div className="orederResultBox">
+          <OrderResult className="orederResult" setModal={setModal} />
+        </div>
+      )}
     </div>
   );
 };

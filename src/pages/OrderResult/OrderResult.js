@@ -2,18 +2,23 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './OrderResult.scss';
 
-const OrderResult = () => {
+const OrderResult = ({ setModal }) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const info = location.state;
 
   const handleGoMain = () => {
     navigate('/');
   };
+
+  const closeModal = () => {
+    setModal(false);
+  };
   return (
     <div className="orderResult">
+      <button onClick={closeModal} className="closeBtn">
+        ✕
+      </button>
       <div className="orderText">
-        <h1>감사합니다, 김땡땡 님</h1>
+        <h1>감사합니다, userName님</h1>
         <p className="thanksText">
           주문이 완료되었습니다. <br />
           추가 문의 사항이 있으시면 연락 주시기 바랍니다.
@@ -21,7 +26,7 @@ const OrderResult = () => {
       </div>
       <div className="orderNumberBox">
         <li>주문번호</li>
-        <li>12312312323213123</li>
+        <li>orderNumber</li>
       </div>
       <div className="orderInfoBox">
         <ul className="orderItemBox">
@@ -32,15 +37,15 @@ const OrderResult = () => {
         <div className="orderItemBox">
           <div className="orderItemBox2">
             <ul className="column">
-              <li>상품명</li>
-              <li>상품타입</li>
-              <li>구매개수 개</li>
+              <li>productname</li>
+              <li>producttype</li>
+              <li>productquantity 개</li>
             </ul>
           </div>
         </div>
         <div className="orderNumberBox2">
-          <li> 총 무게 : 총무게 Kg</li>
-          <li> 총 가격 : 총가격 원</li>
+          <li> 총 무게 : weight Kg</li>
+          <li> 총 가격 : price 원</li>
         </div>
       </div>
       <div className="orderUserInfoBox">
@@ -50,16 +55,16 @@ const OrderResult = () => {
               <li>{el.name}</li>
             </ul>
           ))}
-          <div className="orderUserBox2">
-            <ul className="orderUserInfo">
-              <li>userName</li>
-              <li>email</li>
-              <li>POINT(포인트)</li>
-              <li>userName</li>
-              <li>address</li>
-              <li>경비실에 맡겨주세요</li>
-            </ul>
-          </div>
+        </div>
+        <div className="orderUserBox">
+          <ul className="orderUserInfo">
+            <li>userName</li>
+            <li>email</li>
+            <li>POINT(포인트)</li>
+            <li>userName</li>
+            <li>address</li>
+            <li>경비실에 맡겨주세요</li>
+          </ul>
         </div>
       </div>
       <div className="gotoHomeBox">
