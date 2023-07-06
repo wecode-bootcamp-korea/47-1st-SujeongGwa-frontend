@@ -6,14 +6,14 @@ import Button from '../../../components/Component/Button/Button';
 
 const SignUpContainer = props => {
   const signUpPost = () => {
-    const type_id = signUp === '개인 회원가입' ? 1 : 2;
-    fetch('http://10.58.52.136:3000/users/signup', {
+    const typeId = signUp === '개인 회원가입' ? 1 : 2;
+    fetch('http://10.58.52.235:3000/users/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({
-        type_id: type_id,
+        typeId: typeId,
         name: inputValues.name,
         email: inputValues.email,
         password: inputValues.password,
@@ -28,8 +28,7 @@ const SignUpContainer = props => {
       })
       .then(data => {
         if (data && data.message === 'SIGNUP_SUCCESS') {
-          localStorage.setItem('TOKEN', data.token);
-          alert('환영합니다! 1000 포인트가 적립되었습니다 :)');
+          alert('환영합니다! 1000만 포인트가 적립되었습니다 :)');
           navigate('/');
         } else if (data && data.message === 'INVALID_USER_REQUEST') {
           alert('입력한 정보를 다시 확인해 주세요.');
