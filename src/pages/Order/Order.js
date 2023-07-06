@@ -6,13 +6,16 @@ import OrderResult from '../OrderResult/OrderResult';
 const Order = () => {
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
   const token = localStorage.getItem('TOKEN');
   //const { productInfo } = location.state;
-
-  useEffect(() => {
-    console.log(location);
-  }, [location]);
+  // useEffect(() => {
+  //   console.log(location);
+  // }, [location]);
+  const [modal, setModal] = useState(false);
+  const showModal = () => {
+    setModal(true);
+  };
 
   const surface_type = ['Matt', 'Hard Matt', 'Soft Matt', 'LappaTo', 'Glossy'];
   const sub_categories = [
@@ -85,23 +88,22 @@ const Order = () => {
         if (res.status === 200) {
           // navigate(
           //   '/orderResult'
-          //   // {
-          //   //   state: {
-          //   //     userName: items[0].name,
-          //   //     orderNumber: items[0].order_number,
-          //   //     price: items.total_price,
-          //   //     weight: items.total_weight,
-          //   //     address: items[0].address,
-          //   //     email: items.email,
-          //   //     product: [
-          //   //       {
-          //   //         name: items.product.name,
-          //   //         count: items.product.quantity,
-          //   //         type: items.product.surfaceTypeId,
-          //   //       },
+          // {
+          //   state: {
+          //     userName: items[0].name,
+          //     orderNumber: items[0].order_number,
+          //     price: items.total_price,
+          //     weight: items.total_weight,
+          //     address: items[0].address,
+          //     email: items.email,
+          //     product: [
+          //       {
+          //         name: items.product.name,
+          //         count: items.product.quantity,
+          //         type: items.product.surfaceTypeId,
+          //       },
           //   //     ],
           // );
-          <OrderResult />;
         } else if (res.message === 'SUCCESS_CREATE_OREDER') {
           alert('결제에 실패하였습니다.');
         }
@@ -177,12 +179,20 @@ const Order = () => {
             ))}
           </div>
           <div className="buttonBox">
-            <button type="submit" className="payment" onClick={postProduct}>
+            <button
+              type="submit"
+              className="payment"
+              onClick={() => {
+                postProduct();
+                showModal();
+              }}
+            >
               결제하기
             </button>
           </div>
         </div>
       </div>
+      {modal && <OrderResult />}
     </div>
   );
 };
