@@ -11,7 +11,7 @@ const Cart = () => {
   const token = localStorage.getItem('TOKEN');
 
   useEffect(() => {
-    fetch('http://10.58.52.90:3001/carts', {
+    fetch('http://10.58.52.156:3000/carts', {
       method: 'GET',
       headers: {
         authorization: token,
@@ -37,13 +37,15 @@ const Cart = () => {
       productId: item.productId,
       quantity: item.count,
     }));
-    fetch('http://10.58.52.90:3001/carts', {
+
+    console.log(orderItems);
+    fetch('http://10.58.52.156:3000/carts', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         authorization: token,
       },
-      body: JSON.stringify({ items: orderItems }),
+      body: JSON.stringify({ products: orderItems }),
     })
       .then(res => res.json())
       .catch(error => {
@@ -51,13 +53,15 @@ const Cart = () => {
       });
   };
 
+  // console.log(handleOrder);
+
   const handleDelete = (productId, cartId) => {
     const newItems = onRemove(cartId);
     setItems(newItems);
     setTotalWeight(calculateTotalWeight(newItems));
     setTotalPrice(calculateTotalPrice(newItems));
 
-    fetch('http://10.58.52.90:3001/carts', {
+    fetch('http://10.58.52.156:3000/carts', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
