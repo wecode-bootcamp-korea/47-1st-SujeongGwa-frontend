@@ -8,12 +8,15 @@ const OrderResult = ({ setModal, items, totalWeight, totalPrice, address }) => {
     navigate('/');
   };
 
-  const handleGoMain = () => {
-    navigate('/');
-  };
   return (
     <div className="orderResult">
-      <button onClick={() => setModal(false)} className="closeBtn">
+      <button
+        onClick={() => {
+          setModal(false);
+          handleGoMain();
+        }}
+        className="closeBtn"
+      >
         ✕
       </button>
       <div className="orderText">
@@ -91,7 +94,6 @@ const ORDERUSER_CATEGORY = [
   { id: 1, name: '이름' },
   { id: 2, name: 'Email' },
   { id: 3, name: '결제방법' },
-  { id: 4, name: '수취인' },
-  { id: 5, name: '배송지' },
-  { id: 6, name: '배송메모' },
+  { id: 4, name: '배송지' },
+  { id: 5, name: '배송메모' },
 ];

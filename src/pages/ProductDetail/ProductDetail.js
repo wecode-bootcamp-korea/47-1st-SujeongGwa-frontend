@@ -87,7 +87,7 @@ const ProductDetail = ({ productId }) => {
       }),
     }).then(res => {
       if (res.status === 200) {
-        navigate('/orders');
+        navigate('/carts');
       } else if (res.status === 400) {
         navigate('/users/signin');
       }
