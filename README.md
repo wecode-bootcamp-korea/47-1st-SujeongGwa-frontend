@@ -8,10 +8,16 @@
 ## 🐱 개발 기간 및 인원
 
 - 개발 기간 : 2023/06/26 ~ 2023/07/07
+  
 - 개발 인원 : 프론트엔드 2명 , 백엔드 4명
-  - Product Manager: 김수정(F)
-  - Project Manager: 김상원(B)
-  - Teammates: 서동희(B), 이주현(B), 정성남(B), 최진이(F)  
+  - Product Manager: 김수정(F)<img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white&link=https://github.com/Kimsu10"/></a>
+  - Project Manager: 김상원(B)<img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white&link=https://github.com/Teachsue"/></a>
+  - Teammates: </br>
+서동희(B)<img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white&link=https://github.com/donghee9"/></a></br>
+이주현(B)<img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white&link=https://github.com/sioscorial"/></a></br>
+정성남(B)<img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white&link=https://github.com/jseongnam"/></a></br>
+최진이(F)<img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white&link=https://github.com/jjinichoi"/></a></br>
+
 - 깃헙 레포지토리
   - [Frontend](https://github.com/wecode-bootcamp-korea/47-1st-SujeongGwa-frontend)
   - [Backend](https://github.com/wecode-bootcamp-korea/47-1st-SujeongGwa-backend)
