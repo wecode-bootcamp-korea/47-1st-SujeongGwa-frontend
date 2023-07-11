@@ -10,7 +10,7 @@ const ProductDetail = ({ productId }) => {
   const { name } = useParams();
 
   useEffect(() => {
-    fetch(`http://10.58.52.156:3000/goods/name/${name}`)
+    fetch(`http://52.79.239.240:8080/goods/name/${name}`)
       .then(res => res.json())
       .then(data => setProduct(data.data));
   }, [name]);
@@ -75,7 +75,7 @@ const ProductDetail = ({ productId }) => {
   };
 
   const createCart = () => {
-    fetch('http://10.58.52.156:3000/carts', {
+    fetch('http://52.79.239.240:8080/carts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
