@@ -85,13 +85,17 @@ const ProductDetail = ({ productId }) => {
         productId: product[0]?.id,
         quantity: countNumber,
       }),
-    }).then(res => {
-      if (res.status === 200) {
-        navigate('/carts');
-      } else if (res.status === 400) {
-        navigate('/users/signin');
-      }
-    });
+    })
+      .then(res => {
+        if (res.status === 200) {
+          navigate('/carts');
+        } else if (res.status === 400) {
+          navigate('/users/signin');
+        }
+      })
+      .catch(error => {
+        alert('오류가 발생했습니다: ' + error.message);
+      });
   };
   return (
     <div className="productDetail">

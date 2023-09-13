@@ -6,7 +6,14 @@ import Button from '../../../components/Component/Button/Button';
 
 const SignUpContainer = props => {
   const signUpPost = () => {
-    const typeId = signUp === '개인 회원가입' ? 1 : 2;
+    const typeName = {
+      individual: 1,
+      business: 2,
+    };
+
+    const typeId =
+      signUp === '개인 회원가입' ? typeName.individual : typeName.business;
+
     fetch('http://52.79.239.240:8080/users/signup', {
       method: 'POST',
       headers: {
@@ -24,7 +31,7 @@ const SignUpContainer = props => {
         if (response.ok === true) {
           return response.json();
         }
-        alert('입력한 정보를 다시 확인해 주세요.');
+        throw new Error('네트워크 오류 또는 서버 오류가 발생했습니다.');
       })
       .then(data => {
         if (data && data.message === 'SIGNUP_SUCCESS') {
@@ -33,6 +40,9 @@ const SignUpContainer = props => {
         } else if (data && data.message === 'INVALID_USER_REQUEST') {
           alert('입력한 정보를 다시 확인해 주세요.');
         }
+      })
+      .catch(error => {
+        alert('오류가 발생했습니다: ' + error.message);
       });
   };
 

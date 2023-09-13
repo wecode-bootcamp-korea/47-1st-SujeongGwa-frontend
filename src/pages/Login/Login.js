@@ -56,7 +56,7 @@ const Login = () => {
         if (response.ok === true) {
           return response.json();
         }
-        alert('입력한 정보를 다시 확인해 주세요.');
+        throw new Error('네트워크 오류 또는 서버 오류가 발생했습니다.');
       })
       .then(data => {
         if (data && data.message === 'SIGNIN_SUCCESS') {
@@ -66,6 +66,9 @@ const Login = () => {
         } else if (data && data.message === 'INVALID_USER_REQUEST') {
           alert('입력한 정보를 다시 확인해 주세요.');
         }
+      })
+      .catch(error => {
+        alert('오류가 발생했습니다: ' + error.message);
       });
   };
 

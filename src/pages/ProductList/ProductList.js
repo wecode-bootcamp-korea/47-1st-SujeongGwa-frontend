@@ -28,21 +28,14 @@ const ProductList = () => {
   useEffect(() => {
     let categoryData = [];
     let title = '';
-    if (
-      (sub_category_id >= 1 && sub_category_id <= 5) ||
-      sub_category_id === String(10)
-    ) {
+    if (PORCELAIN_SUB_CATEGORY.find(item => item.id === sub_category_id)) {
       categoryData = PORCELAIN_SUB_CATEGORY;
       title = 'PORCELAIN';
-    } else if (
-      (sub_category_id >= 6 && sub_category_id <= 7) ||
-      sub_category_id === String(11)
-    ) {
+    } else if (WALL_SUB_CATEGORY.find(item => item.id === sub_category_id)) {
       categoryData = WALL_SUB_CATEGORY;
       title = 'WALL';
     } else if (
-      (sub_category_id >= 8 && sub_category_id <= 9) ||
-      sub_category_id === String(12)
+      FLOOR_TILE_SUB_CATEGORY.find(item => item.id === sub_category_id)
     ) {
       categoryData = FLOOR_TILE_SUB_CATEGORY;
       title = 'FLOOR';
