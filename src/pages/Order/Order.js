@@ -33,7 +33,7 @@ const Order = () => {
   };
 
   useEffect(() => {
-    fetch(`http://10.58.52.156:3000/carts`, {
+    fetch(`http://52.79.239.240:8080/carts`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -63,7 +63,7 @@ const Order = () => {
   };
 
   const postProduct = () => {
-    fetch(`http://10.58.52.156:3000/orders`, {
+    fetch(`http://52.79.239.240:8080/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -72,13 +72,17 @@ const Order = () => {
       body: JSON.stringify({
         address: inputValues.address,
       }),
-    }).then(res => {
-      if (res.status === 200) {
-        setModal(true);
-      } else if (res.message === 'SUCCESS_CREATE_OREDER') {
-        alert('결제에 실패하였습니다.');
-      }
-    });
+    })
+      .then(res => {
+        if (res.status === 200) {
+          setModal(true);
+        } else if (res.message === 'SUCCESS_CREATE_OREDER') {
+          alert('결제에 실패하였습니다.');
+        }
+      })
+      .catch(error => {
+        alert('오류가 발생했습니다: ' + error.message);
+      });
   };
 
   return (

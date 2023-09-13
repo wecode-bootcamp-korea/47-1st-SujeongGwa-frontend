@@ -10,7 +10,7 @@ const ProductDetail = ({ productId }) => {
   const { name } = useParams();
 
   useEffect(() => {
-    fetch(`http://10.58.52.156:3000/goods/name/${name}`)
+    fetch(`http://52.79.239.240:8080/goods/name/${name}`)
       .then(res => res.json())
       .then(data => setProduct(data.data));
   }, [name]);
@@ -75,7 +75,7 @@ const ProductDetail = ({ productId }) => {
   };
 
   const createCart = () => {
-    fetch('http://10.58.52.156:3000/carts', {
+    fetch('http://52.79.239.240:8080/carts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -85,13 +85,17 @@ const ProductDetail = ({ productId }) => {
         productId: product[0]?.id,
         quantity: countNumber,
       }),
-    }).then(res => {
-      if (res.status === 200) {
-        navigate('/carts');
-      } else if (res.status === 400) {
-        navigate('/users/signin');
-      }
-    });
+    })
+      .then(res => {
+        if (res.status === 200) {
+          navigate('/carts');
+        } else if (res.status === 400) {
+          navigate('/users/signin');
+        }
+      })
+      .catch(error => {
+        alert('오류가 발생했습니다: ' + error.message);
+      });
   };
   return (
     <div className="productDetail">
